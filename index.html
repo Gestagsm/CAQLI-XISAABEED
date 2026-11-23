@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#2456d6">
+<link rel="icon" href="icon.svg">
+<title>Nidaamka Xisaabta</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#14181f;--mut:#667085;--bd:#e4e7ec;--inc:#0a8f55;--exp:#d92d20;--acc:#2456d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0f1218;--card:#181c25;--tx:#eef0f4;--mut:#98a2b3;--bd:#2a3040;--inc:#32d583;--exp:#f97066;--acc:#7a9cff}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:4px 0 4px}
+.sub{color:var(--mut);font-size:12px;margin-bottom:12px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin-bottom:14px}
+.bal{text-align:center}
+.bal small{color:var(--mut)}
+.bal .n{font-size:34px;font-weight:700;margin:4px 0}
+.row{display:flex;gap:10px}
+.row>div{flex:1;text-align:center;padding:10px;border-radius:10px;background:var(--bg)}
+.row b{display:block;font-size:17px;margin-top:2px}
+.inc{color:var(--inc)}.exp{color:var(--exp)}
+.seg{display:flex;gap:8px;margin-bottom:10px}
+.seg button{flex:1;padding:10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14px}
+.seg button.on.i{background:var(--inc);color:#fff;border-color:var(--inc)}
+.seg button.on.e{background:var(--exp);color:#fff;border-color:var(--exp)}
+input,select{width:100%;padding:11px;margin-bottom:10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:16px}
+.add{width:100%;padding:12px;border:0;border-radius:10px;background:var(--acc);color:#fff;font-size:16px;font-weight:600}
+.head{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.head select{margin:0;flex:1}
+.rng{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px;margin-bottom:8px}
+.rng label{font-size:12px;color:var(--mut);min-width:0;display:block}
+.rng input{margin:4px 0 0;min-width:0;max-width:100%;display:block;-webkit-appearance:none;appearance:none;height:46px;text-align:left}
+.qk{display:flex;gap:8px;margin-bottom:12px}
+.qk button{flex:1;padding:8px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:13px}
+.wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:480px}
+th{background:var(--acc);color:#fff;text-align:left;padding:8px;font-weight:600;white-space:nowrap}
+th.r,td.r{text-align:right}
+td{padding:8px;border-bottom:1px solid var(--bd);white-space:nowrap}
+td.ds{white-space:normal;min-width:110px}
+tr.op td{background:var(--bg);font-style:italic}
+.del{background:none;border:0;color:var(--mut);font-size:16px;padding:2px 6px}
+.empty{color:var(--mut);text-align:center;padding:14px}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.ex button{padding:11px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:14px}
+.ex .pri{background:var(--acc);color:#fff;border-color:var(--acc);grid-column:1/3;font-weight:600}
+#bs{color:var(--mut);font-size:12px;margin-top:8px}
+.card.bal{background:linear-gradient(135deg,#2456d6,#6a3df0);color:#fff;border:0}
+.card.bal small,.card.bal .sub{color:rgba(255,255,255,.8)}
+.card.bal .row>div{background:rgba(255,255,255,.16)}
+.card.bal .inc,.card.bal .exp{color:#fff}
+.card.bal .n.exp{color:#ffd1cc}
+main{padding-bottom:100px}
+.card[hidden]{display:none}
+.sheet{position:fixed;inset:0;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;z-index:20}
+.sheet[hidden]{display:none}
+.panel{background:var(--card);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));animation:up .22s ease-out;max-height:92vh;overflow-y:auto}
+@keyframes up{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+.ph{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.x{background:none;border:0;color:var(--mut);font-size:20px}
+input.big{font-size:30px;text-align:center;font-weight:700;padding:14px}
+.cgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-height:224px;overflow-y:auto;margin-bottom:10px;padding:2px}
+.ctile{position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:14px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:11px;line-height:1.2;text-align:center}
+.ctile .ci{font-size:24px;line-height:1}
+.ctile .cnm{word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ctile.on{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc) inset;font-weight:700}
+.ctile.add{border-style:dashed;color:var(--mut)}
+.cdel{position:absolute;top:2px;right:6px;font-style:normal;color:var(--mut);font-size:15px}
+.ncrow{display:flex;gap:8px;margin-bottom:10px}
+.ncrow[hidden]{display:none}
+.ncrow input{margin:0}
+.nce{width:64px!important;text-align:center}
+.ncb{padding:0 16px;border:0;border-radius:10px;background:var(--acc);color:#fff;font-weight:600;font-size:15px}
+.svg{width:100%;height:auto;display:block;margin-top:8px}
+.svg text{fill:var(--mut);font-size:10px}
+.svg .bi{fill:var(--inc)}.svg .be{fill:var(--exp)}
+.lg{display:flex;gap:14px;font-size:12px;color:var(--mut);margin-top:6px}
+.d{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:4px}
+.d.bi{background:var(--inc)}.d.be{background:var(--exp)}
+.cb{margin-bottom:8px}
+.cl{display:flex;justify-content:space-between;font-size:13px;margin-bottom:3px}
+.ct{height:8px;background:var(--bg);border-radius:6px;overflow:hidden}
+.cf{height:100%;background:var(--exp);border-radius:6px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.sel{display:flex;gap:6px}
+#lang{width:auto;margin:0;padding:6px 8px;font-size:13px}
+.card.bal{position:relative}
+.curbtn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:999px;padding:6px 11px;font-size:13px;font-weight:600}
+.clist button{display:flex;width:100%;justify-content:space-between;align-items:center;padding:13px 6px;background:none;border:0;border-bottom:1px solid var(--bd);color:var(--tx);font-size:16px;text-align:left}
+.clist button.on{color:var(--acc);font-weight:700}
+.clist small{color:var(--mut)}
+h1{font-size:18px}
+.tabs{margin-bottom:12px}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.tabs button.on.ti{background:var(--inc);border-color:var(--inc)}
+.tabs button.on.te{background:var(--exp);border-color:var(--exp)}
+.qa{display:flex;gap:10px;margin-top:12px}
+.qa button{flex:1;padding:13px 8px;border:0;border-radius:14px;font-size:15px;font-weight:700;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.qa #qai{color:#0a8f55}.qa #qae{color:#d92d20}
+.upd{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--acc);color:#fff;padding:10px 12px;border-radius:12px;margin-bottom:10px;font-size:14px}
+.upd[hidden]{display:none}
+.upd button{border:0;border-radius:8px;padding:6px 12px;font-weight:700;background:#fff;color:var(--acc)}
+.sublbl{font-size:12px;color:var(--mut);margin:2px 0 6px}
+.subrow{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.schip{padding:7px 11px;border-radius:999px;border:1px solid var(--bd);background:var(--bg);color:var(--tx);font-size:13px}
+.schip.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.schip.add{border-style:dashed;color:var(--mut)}
+.sdel{font-style:normal;margin-left:6px;opacity:.7}
+small.cs{display:block;color:var(--mut);font-size:11px;white-space:normal}
+.lnk{background:none;border:0;color:var(--acc);font-size:12px;text-decoration:underline;padding:0}
+.tabsec[hidden]{display:none}
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:10;display:flex;justify-content:space-around;align-items:center;background:var(--card);border-top:1px solid var(--bd);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+.nav button{flex:1;background:none;border:0;color:var(--mut);font-size:11px;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 0}
+.nav button i{font-style:normal;font-size:20px}
+.nav button.on{color:var(--acc);font-weight:700}
+.nav .plus{flex:0 0 54px;width:54px;height:54px;border-radius:50%;background:linear-gradient(135deg,#2456d6,#6a3df0);color:#fff;font-size:30px;line-height:1;margin-top:-20px;box-shadow:0 4px 14px rgba(36,86,214,.45);justify-content:center}
+.sh{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.sh .lnk{font-size:13px}
+.rc{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--bd)}
+.rc:last-child{border:0}
+.rc .ci{font-size:20px;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:var(--bg);border-radius:10px}
+.rc .mid{flex:1;min-width:0}
+.rc .mid b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc .mid small{color:var(--mut);font-size:11px}
+.rc .amt{font-weight:700;font-size:14px;white-space:nowrap}
+.stsum{display:flex;gap:8px;margin-bottom:12px}
+.stsum div{flex:1;background:var(--bg);border-radius:10px;padding:8px 4px;text-align:center;font-size:11px;color:var(--mut)}
+.stsum b{display:block;font-size:13px;margin-top:2px}
+.morebtn{width:100%;padding:11px;margin-top:10px;border-radius:10px;border:1px solid var(--bd);background:var(--bg);color:var(--acc);font-weight:600;font-size:14px}
+.morebtn[hidden]{display:none}
+tr.gh td{background:var(--bg);font-weight:700;font-size:12px;padding:9px 8px;cursor:pointer}
+tr.gh td span{float:right;font-weight:600;color:var(--mut)}
+.pt{display:none}
+@media print{
+ body{background:#fff;color:#000}
+ .noprint{display:none!important}
+ .pt{display:block}
+ .card{border:0;padding:0}
+ th{background:#2456d6!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ .del{display:none}
+ .wrap{overflow:visible}
+}
+</style>
+</head>
+<body>
+<main>
+<div class="upd noprint" id="upd" hidden><span data-i="upd"></span><button id="updB" type="button" data-i="updBtn"></button></div>
+<div class="top"><h1 data-i="title"></h1><div class="sel noprint"><select id="lang" class="noprint" aria-label="Language"><option value="so">Somali</option><option value="en">English</option><option value="no">Norsk</option></select></div></div>
+<div class="sub noprint" id="st"></div>
+<div class="pt" id="pt"></div>
+
+<section class="tabsec" id="sec-home">
+<div class="card bal">
+<button class="curbtn noprint" id="curbtn" type="button"></button>
+<small data-i="balance"></small>
+<div class="n" id="bal">0.00</div>
+<div class="row">
+<div><small data-i="income"></small><b class="inc" id="inc">0.00</b></div>
+<div><small data-i="expense"></small><b class="exp" id="exp">0.00</b></div>
+</div>
+<div class="sub" id="op" style="margin:10px 0 0"></div>
+<div class="qa noprint"><button id="qai" type="button" data-i="addInc"></button><button id="qae" type="button" data-i="addExp"></button></div>
+</div>
+<div class="card"><div class="sh"><b data-i="recent"></b><button id="viewAll" type="button" class="lnk" data-i="viewAll"></button></div><div id="recent"></div></div>
+</section>
+
+<section class="tabsec" id="sec-st" hidden>
+<div class="card">
+<div class="stsum" id="stsum"></div>
+<div class="seg tabs noprint"><button id="tS" class="on" type="button" data-i="statement"></button><button id="tI" class="ti" type="button" data-i="income"></button><button id="tE" class="te" type="button" data-i="expense"></button></div>
+<div class="rng noprint">
+<label><span data-i="from"></span><input type="date" id="df"></label>
+<label><span data-i="to"></span><input type="date" id="dto"></label>
+</div>
+<div class="qk noprint">
+<button id="qm" type="button" data-i="thisMonth"></button>
+<button id="qy" type="button" data-i="thisYear"></button>
+<button id="qa" type="button" data-i="all"></button>
+</div>
+<input id="q" type="search" data-ph="searchPh">
+<div class="wrap" id="list"></div>
+<button class="morebtn noprint" id="more" type="button" hidden></button>
+</div>
+</section>
+
+<section class="tabsec" id="sec-ch" hidden><div class="card noprint" id="ch"></div></section>
+
+<section class="tabsec" id="sec-set" hidden>
+<div class="card noprint">
+<div class="sub" id="exr" style="margin-bottom:8px"></div>
+<div class="ex">
+<button class="pri" id="bxl" type="button">📊 Excel (.xlsx)</button>
+<button id="bcsv" type="button">CSV</button>
+<button id="bpdf" type="button" data-i="print"></button>
+<button id="bx" type="button">⬇ Backup</button>
+<button id="bm" type="button" data-i="restore"></button>
+</div>
+<input type="file" id="fi" accept=".json,application/json" hidden>
+<div id="bs"></div>
+</div>
+<div class="sub noprint" style="text-align:center;margin-top:8px">v4.4 · <button id="chk" type="button" class="lnk" data-i="chkUpd"></button></div>
+</section>
+</main>
+<nav class="nav noprint" id="nav">
+<button type="button" data-t="home" class="on"><i>🏠</i><span data-i="tHome"></span></button>
+<button type="button" data-t="st"><i>📄</i><span data-i="statement"></span></button>
+<button type="button" id="nadd" class="plus" aria-label="+">＋</button>
+<button type="button" data-t="ch"><i>📊</i><span data-i="chart"></span></button>
+<button type="button" data-t="set"><i>⚙️</i><span data-i="tSet"></span></button>
+</nav>
+<div class="sheet noprint" id="sheet" hidden>
+<div class="panel">
+<div class="ph"><b data-i="newTx"></b><button class="x" id="sx" type="button">✕</button></div>
+<div class="seg">
+<button class="i on" id="bi" type="button" data-i="addInc"></button>
+<button class="e" id="be" type="button" data-i="addExp"></button>
+</div>
+<input class="big" id="amt" type="number" inputmode="decimal" min="0" step="any" placeholder="0.00">
+<div class="cgrid" id="chips"></div>
+<div class="ncrow" id="newcat" hidden><input id="ncE" class="nce" maxlength="4" value="⭐"><input id="ncN" data-ph="catNamePh"><button type="button" id="ncB" class="ncb" data-i="addBtn"></button></div>
+<div id="subs"></div>
+<div class="ncrow" id="newsub" hidden><input id="nsN" data-ph="subNamePh"><button type="button" id="nsB" class="ncb" data-i="addBtn"></button></div>
+<input id="desc" data-ph="descPh">
+<input id="dt" type="date">
+<button class="add" id="add" type="button" data-i="save"></button>
+</div>
+</div>
+
+<div class="sheet noprint" id="csheet" hidden>
+<div class="panel">
+<div class="ph"><b data-i="country"></b><button class="x" id="cx" type="button">✕</button></div>
+<div class="clist" id="clist"></div>
+</div>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+let type='i',items=[],from='',to='',vw='st',tab='home',q='',lim=25,mo={},printMode=false;
+const f=n=>n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const CTR=[
+['USD','🇺🇸',{so:'Mareykanka',en:'United States',no:'USA'},'$'],
+['EUR','🇪🇺',{so:'Yurub (Euro)',en:'Eurozone',no:'Eurosonen'},'€'],
+['GBP','🇬🇧',{so:'Boqortooyada Midowday',en:'United Kingdom',no:'Storbritannia'},'£'],
+['KES','🇰🇪',{so:'Kenya',en:'Kenya',no:'Kenya'},'KSh '],
+['NOK','🇳🇴',{so:'Norway',en:'Norway',no:'Norge'},'NOK '],
+['SEK','🇸🇪',{so:'Iswiidhan',en:'Sweden',no:'Sverige'},'SEK '],
+['SOS','🇸🇴',{so:'Soomaaliya',en:'Somalia',no:'Somalia'},'SOS '],
+['ETB','🇪🇹',{so:'Itoobiya',en:'Ethiopia',no:'Etiopia'},'ETB '],
+['TZS','🇹🇿',{so:'Tanzaaniya',en:'Tanzania',no:'Tanzania'},'TSh '],
+['UGX','🇺🇬',{so:'Uganda',en:'Uganda',no:'Uganda'},'USh '],
+['DJF','🇩🇯',{so:'Jabuuti',en:'Djibouti',no:'Djibouti'},'DJF '],
+['CAD','🇨🇦',{so:'Kanada',en:'Canada',no:'Canada'},'C$'],
+['AED','🇦🇪',{so:'Imaaraadka',en:'UAE',no:'UAE'},'AED ']
+];
+const CURS=Object.fromEntries(CTR.map(c=>[c[0],'"'+c[3]+'"#,##0.00']));
+let CUR='USD';try{CUR=localStorage.getItem('xisaab_cur')||'USD';if(!CURS[CUR])CUR='USD'}catch(e){}
+const fm=n=>(n<0?'-':'')+CTR.find(c=>c[0]===CUR)[3]+f(Math.abs(n));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const isoOf=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const dOf=t=>t.d||isoOf(new Date(t.id));
+const show=i=>i.slice(8,10)+'/'+i.slice(5,7)+'/'+i.slice(0,4);
+const serial=i=>Math.round(Date.UTC(+i.slice(0,4),+i.slice(5,7)-1,+i.slice(8,10))/864e5)+25569;
+const r2=n=>Math.round(n*100)/100;
+const T={
+so:{tHome:'Guriga',tSet:'Dejin',recent:'Kuwii ugu dambeeyay',viewAll:'Dhammaan →',searchPh:'Raadi magac, qayb, qaddar…',more:'Tus kuwo kale ({n})',expRange:'Muddada la dhoofinayo',chkUpd:'Hubi cusboonaysiin',updating:'Waa la cusboonaysiinayaa…',needNet:'Internet ku xidh',subLbl:'Qayb hoosaad (ikhtiyaari)',addSub:'Qayb hoosaad',subNamePh:'Magaca qaybta hoosaadka',colSub:'Qayb hoosaad',offReady:'Diyaar offline ah ✓ · xogtu waxay ku kaydsan tahay qalabkan',offWait:'Internet ku fur hal mar si offline loo diyaariyo',upd:'Nooca cusub waa diyaar',updBtn:'Cusboonaysii',country:"Dooro waddanka (lacagta)",title:'Nidaamka Xisaabta',balance:'Haraaga (Balance)',income:'Dakhliga',expense:'Kharashka',opening:'Haraaga hore',statement:'Statement',from:'Laga bilaabo (From)',to:'Ilaa (To)',thisMonth:'Bishaan',thisYear:'Sannadkan',all:'Dhammaan',start:'bilowga',today:'maanta',chart:'Chart',catExp:'Kharashka qaybaha',colDate:'Taariikh',colDesc:'Faahfaahin',colType:'Nooca',colCat:'Qaybta',colInc:'Dakhli',colExp:'Kharash',colBal:'Haraaga',typeInc:'Dakhli',typeExp:'Kharash',total:'Wadarta',newTx:'Macaamil cusub',addInc:'+ Dakhli',addExp:'− Kharash',descPh:'Faahfaahin (ikhtiyaari)',save:'Kaydi',print:'🖨 PDF / Print',restore:'⬆ Soo celi',noTx:'Wax macaamil ah ma jiraan muddadan',confirmDel:'Ma tirtirtaa?',offline:'Offline · xogtu waxay ku kaydsan tahay qalabkan',noData:'Wax xog ah ma jiraan',excelOk:'✓ Excel waa diyaar',csvOk:'✓ CSV waa diyaar',bkOk:'✓ Backup waa diyaar',restored:'✓ {n} xog ayaa la soo celiyay',badFile:'Faylkan ma saxna',saveErr:'Khalad: lama kaydin',sh1:'Statement',sh2:'Soo koobid',mMonth:'Bisha',mDiff:'Farqiga',
+ mn:['Janaayo','Febraayo','Maarso','Abriil','Maajo','Juun','Luuliyo','Ogosto','Sebtembar','Oktoobar','Nofembar','Desembar'],
+ addCat:'Qayb cusub',catNamePh:'Magaca qaybta',addBtn:'Ku dar',delCat:'Tirtir qaybtan?',cats:{'mushahar':'Mushahar','ganacsi':'Ganacsi','freelance':'Shaqo gaar ah','iibka':'Iib','kiro-dakhli':'Kiro la helay','hawlaad':'Hawlaad la helay','bonus':'Bonus','maalgashi':'Maalgashi','dib-celin':'Lacag soo laabatay','amaah':'Amaah la helay','hadiyad':'Hadiyad','dakhli-kale':'Kale','cunto':'Cunto','makhaayad':'Makhaayad','kiro':'Kiro','biil':'Biilal','telefoon':'Telefoon & Internet','gaadiid':'Gaadiid','shidaal':'Shidaal','caafimaad':'Caafimaad','waxbarasho':'Waxbarasho','iib':'Wax iibsasho','dharka':'Dhar','guri':'Guri & alaab','caruur':'Caruur & qoys','hawlaad-diray':'Lacag loo diray','sadaqo':'Sadaqo & Zakaat','madadaalo':'Madadaalo','safar':'Safar','deyn-bixin':'Bixinta deynta','ganacsi-kharash':'Kharashka ganacsiga','cashuur':'Cashuur & khidmad','shaqaale':'Shaqaale','kharash-kale':'Kale'}},
+en:{tHome:'Home',tSet:'Settings',recent:'Recent',viewAll:'View all →',searchPh:'Search name, category, amount…',more:'Show more ({n})',expRange:'Export range',chkUpd:'Check for updates',updating:'Updating…',needNet:'Connect to the internet first',subLbl:'Subcategory (optional)',addSub:'Subcategory',subNamePh:'Subcategory name',colSub:'Subcategory',offReady:'Ready offline ✓ · data is stored on this device',offWait:'Open once online to enable offline use',upd:'New version available',updBtn:'Update',country:"Choose country (currency)",title:'Accounting System',balance:'Balance',income:'Income',expense:'Expenses',opening:'Opening balance',statement:'Statement',from:'From',to:'To',thisMonth:'This month',thisYear:'This year',all:'All',start:'start',today:'today',chart:'Chart',catExp:'Expenses by category',colDate:'Date',colDesc:'Description',colType:'Type',colCat:'Category',colInc:'Income',colExp:'Expense',colBal:'Balance',typeInc:'Income',typeExp:'Expense',total:'Total',newTx:'New transaction',addInc:'+ Income',addExp:'− Expense',descPh:'Description (optional)',save:'Save',print:'🖨 PDF / Print',restore:'⬆ Restore',noTx:'No transactions in this period',confirmDel:'Delete this?',offline:'Offline · data is stored on this device',noData:'No data',excelOk:'✓ Excel is ready',csvOk:'✓ CSV is ready',bkOk:'✓ Backup is ready',restored:'✓ {n} records restored',badFile:'Invalid file',saveErr:'Error: could not save',sh1:'Statement',sh2:'Summary',mMonth:'Month',mDiff:'Difference',
+ mn:['January','February','March','April','May','June','July','August','September','October','November','December'],
+ addCat:'New category',catNamePh:'Category name',addBtn:'Add',delCat:'Delete this category?',cats:{'mushahar':'Salary','ganacsi':'Business','freelance':'Freelance','iibka':'Sales','kiro-dakhli':'Rental income','hawlaad':'Money received','bonus':'Bonus','maalgashi':'Investment','dib-celin':'Refund','amaah':'Loan received','hadiyad':'Gifts','dakhli-kale':'Other','cunto':'Food','makhaayad':'Eating out','kiro':'Rent','biil':'Bills','telefoon':'Phone & Internet','gaadiid':'Transport','shidaal':'Fuel','caafimaad':'Health','waxbarasho':'Education','iib':'Shopping','dharka':'Clothing','guri':'Home','caruur':'Kids & family','hawlaad-diray':'Money sent','sadaqo':'Charity & Zakat','madadaalo':'Entertainment','safar':'Travel','deyn-bixin':'Debt payment','ganacsi-kharash':'Business costs','cashuur':'Taxes & fees','shaqaale':'Staff & wages','kharash-kale':'Other'}},
+no:{tHome:'Hjem',tSet:'Innstillinger',recent:'Siste',viewAll:'Se alle →',searchPh:'Søk navn, kategori, beløp…',more:'Vis flere ({n})',expRange:'Eksportperiode',chkUpd:'Se etter oppdatering',updating:'Oppdaterer…',needNet:'Koble til internett først',subLbl:'Underkategori (valgfritt)',addSub:'Underkategori',subNamePh:'Navn på underkategori',colSub:'Underkategori',offReady:'Klar for frakoblet bruk ✓ · data lagres på denne enheten',offWait:'Åpne én gang med nett for å bruke frakoblet',upd:'Ny versjon tilgjengelig',updBtn:'Oppdater',country:"Velg land (valuta)",title:'Regnskapssystem',balance:'Saldo',income:'Inntekt',expense:'Utgifter',opening:'Inngående saldo',statement:'Kontoutskrift',from:'Fra',to:'Til',thisMonth:'Denne måneden',thisYear:'I år',all:'Alle',start:'start',today:'i dag',chart:'Diagram',catExp:'Utgifter per kategori',colDate:'Dato',colDesc:'Beskrivelse',colType:'Type',colCat:'Kategori',colInc:'Inntekt',colExp:'Utgift',colBal:'Saldo',typeInc:'Inntekt',typeExp:'Utgift',total:'Sum',newTx:'Ny transaksjon',addInc:'+ Inntekt',addExp:'− Utgift',descPh:'Beskrivelse (valgfritt)',save:'Lagre',print:'🖨 PDF / Skriv ut',restore:'⬆ Gjenopprett',noTx:'Ingen transaksjoner i denne perioden',confirmDel:'Slette denne?',offline:'Frakoblet · data lagres på denne enheten',noData:'Ingen data',excelOk:'✓ Excel er klar',csvOk:'✓ CSV er klar',bkOk:'✓ Sikkerhetskopi er klar',restored:'✓ {n} poster gjenopprettet',badFile:'Ugyldig fil',saveErr:'Feil: kunne ikke lagre',sh1:'Kontoutskrift',sh2:'Oppsummering',mMonth:'Måned',mDiff:'Differanse',
+ mn:['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'],
+ addCat:'Ny kategori',catNamePh:'Kategorinavn',addBtn:'Legg til',delCat:'Slette denne kategorien?',cats:{'mushahar':'Lønn','ganacsi':'Forretning','freelance':'Frilans','iibka':'Salg','kiro-dakhli':'Leieinntekt','hawlaad':'Mottatte penger','bonus':'Bonus','maalgashi':'Investering','dib-celin':'Refusjon','amaah':'Lån mottatt','hadiyad':'Gaver','dakhli-kale':'Annet','cunto':'Mat','makhaayad':'Spise ute','kiro':'Husleie','biil':'Regninger','telefoon':'Telefon og internett','gaadiid':'Transport','shidaal':'Drivstoff','caafimaad':'Helse','waxbarasho':'Utdanning','iib':'Shopping','dharka':'Klær','guri':'Hjem','caruur':'Barn og familie','hawlaad-diray':'Penger sendt','sadaqo':'Veldedighet og zakat','madadaalo':'Underholdning','safar':'Reise','deyn-bixin':'Gjeldsbetaling','ganacsi-kharash':'Forretningsutgifter','cashuur':'Skatt og gebyrer','shaqaale':'Ansatte og lønn','kharash-kale':'Annet'}}
+};
+let LG='so';try{LG=localStorage.getItem('xisaab_lang')||'so';if(!T[LG])LG='so'}catch(e){}
+const tr=(k,p)=>{let x=T[LG][k]||T.en[k]||k;if(p)for(const y in p)x=x.replace('{'+y+'}',p[y]);return x};
+const mn=()=>T[LG].mn;
+const mlabel=p=>mn()[+p.slice(5)-1]+' '+p.slice(0,4);
+const CATS={i:[{k:'mushahar',ic:'💼'},{k:'ganacsi',ic:'📈'},{k:'freelance',ic:'💻'},{k:'iibka',ic:'🏷'},{k:'kiro-dakhli',ic:'🏘'},{k:'hawlaad',ic:'💸'},{k:'bonus',ic:'⭐'},{k:'maalgashi',ic:'📊'},{k:'dib-celin',ic:'↩️'},{k:'amaah',ic:'🏦'},{k:'hadiyad',ic:'🎁'},{k:'dakhli-kale',ic:'➕'}],e:[{k:'cunto',ic:'🍽'},{k:'makhaayad',ic:'🍔'},{k:'kiro',ic:'🏠'},{k:'biil',ic:'💡'},{k:'telefoon',ic:'📱'},{k:'gaadiid',ic:'🚗'},{k:'shidaal',ic:'⛽'},{k:'caafimaad',ic:'💊'},{k:'waxbarasho',ic:'🎓'},{k:'iib',ic:'🛍'},{k:'dharka',ic:'👕'},{k:'guri',ic:'🛋'},{k:'caruur',ic:'👶'},{k:'hawlaad-diray',ic:'📤'},{k:'sadaqo',ic:'🤲'},{k:'madadaalo',ic:'🎬'},{k:'safar',ic:'✈️'},{k:'deyn-bixin',ic:'🏦'},{k:'ganacsi-kharash',ic:'🛠'},{k:'cashuur',ic:'🧾'},{k:'shaqaale',ic:'👷'},{k:'kharash-kale',ic:'➖'}]};
+let CC={i:[],e:[]};try{const x=JSON.parse(localStorage.getItem('xisaab_cc')||'null');if(x){CC.i=x.i||[];CC.e=x.e||[]}}catch(e){}
+const SUBS={'mushahar':[['basic','Mushahar rasmi','Basic salary','Grunnlønn'],['overtime','Saacado dheeri ah','Overtime','Overtid'],['allow','Kabo','Allowance','Tillegg']],'ganacsi':[['sales','Iib','Sales','Salg'],['services','Adeeg','Services','Tjenester'],['commission','Komishan','Commission','Provisjon']],'hawlaad':[['family','Qoyska','Family','Familie'],['friends','Asxaab','Friends','Venner'],['org','Ururka','Organisation','Organisasjon']],'cunto':[['raashin','Raashin','Groceries','Dagligvarer'],['hilib','Hilib & kalluun','Meat & fish','Kjøtt og fisk'],['khudaar','Khudaar & miro','Vegetables & fruit','Grønnsaker og frukt'],['caano','Caano & rooti','Dairy & bread','Meieri og brød']],'makhaayad':[['casho','Makhaayad','Restaurant','Restaurant'],['kafee','Kafee','Café','Kafé'],['fast','Fast food','Fast food','Hurtigmat'],['delivery','Keenid','Delivery','Levering']],'kiro':[['guriga','Kirada guriga','House rent','Husleie'],['dukaan','Dukaan / xafiis','Shop / office','Butikk / kontor'],['dammaanad','Dammaanad','Deposit','Depositum']],'biil':[['koronto','Koronto','Electricity','Strøm'],['biyo','Biyo','Water','Vann'],['gaas','Gaas','Gas','Gass'],['internet','Internet','Internet','Internett'],['qashin','Qashin','Waste','Avfall'],['tv','TV / Kaabal','TV / Cable','TV / Kabel']],'telefoon':[['airtime','Airtime','Airtime','Taletid'],['data','Data','Mobile data','Mobildata'],['wifi','WiFi guriga','Home WiFi','Hjemme-WiFi']],'gaadiid':[['bas','Bas / Taksi','Bus / Taxi','Buss / Drosje'],['tikidh','Tikidh','Tickets','Billetter'],['dayactir','Dayactir gaadhi','Car repair','Bilreparasjon'],['baarkin','Baarkin','Parking','Parkering'],['caymis','Caymis','Insurance','Forsikring']],'shidaal':[['baatrool','Baatrool','Petrol','Bensin'],['diisal','Diisal','Diesel','Diesel']],'caafimaad':[['dhakhtar','Dhakhtar','Doctor','Lege'],['dawo','Dawo','Medicine','Medisin'],['isbitaal','Isbitaal','Hospital','Sykehus'],['ilko','Ilkaha','Dental','Tannlege'],['caymis-c','Caymis caafimaad','Health insurance','Helseforsikring']],'waxbarasho':[['fee','Fiiga dugsiga','School fees','Skolepenger'],['buug','Buugaag','Books','Bøker'],['unifoom','Unifoom','Uniform','Uniform'],['koorso','Koorso','Courses','Kurs']],'guri':[['alaab','Alaab guri','Furniture','Møbler'],['dayactir-g','Dayactir','Repairs','Reparasjoner'],['nadiifin','Nadiifin','Cleaning','Rengjøring'],['qalab','Qalab korontada','Appliances','Apparater']],'shaqaale':[['guri-s','Shaqaale guri','Household staff','Husholdning'],['waardiye','Waardiye','Security guard','Vakt'],['darawal','Darawal','Driver','Sjåfør'],['karraani','Karraani / Kariye','Cook / nanny','Kokk / barnepasser'],['shaqaale-g','Mushahar shaqaale','Staff wages','Ansattlønn']],'dharka':[['rag','Rag','Men','Menn'],['dumar','Dumar','Women','Kvinner'],['caruur-d','Caruur','Kids','Barn'],['kab','Kabo','Shoes','Sko']],'caruur':[['dugsi','Dugsi','School','Skole'],['ciyaar','Ciyaaraha','Toys','Leker'],['dhar-c','Dhar','Clothes','Klær'],['daryeel','Daryeel','Childcare','Barnepass']],'hawlaad-diray':[['qoys','Qoyska','Family','Familie'],['asxaab','Asxaab','Friends','Venner'],['ganacsi-h','Ganacsi','Business','Forretning']],'sadaqo':[['sadaqo','Sadaqo','Charity','Veldedighet'],['zakaat','Zakaat','Zakat','Zakat'],['masjid','Masjid','Mosque','Moské'],['waqaf','Waqaf','Endowment','Wakf']],'madadaalo':[['filim','Filim','Movies','Filmer'],['ciyaar-m','Ciyaaro','Games','Spill'],['rukun','Rukunno (Netflix...)','Subscriptions','Abonnement'],['isboorti','Isboorti','Sports','Sport']],'safar':[['duulimaad','Duulimaad','Flights','Flyreiser'],['hudheel','Hudheel','Hotel','Hotell'],['fiisa','Fiisaha','Visa','Visum']],'ganacsi-kharash':[['alaab-g','Alaab (stock)','Stock','Varelager'],['shaqaale-b','Mushahar','Wages','Lønn'],['kiro-b','Kiro','Rent','Leie'],['suuqgeyn','Suuq-geyn','Marketing','Markedsføring']],'cashuur':[['cashuur-d','Cashuur dakhli','Income tax','Inntektsskatt'],['cashuur-g','Cashuurta guriga','Property tax','Eiendomsskatt'],['bangi','Khidmadda bangiga','Bank fees','Bankgebyr'],['ruqsad','Ruqsad','Licenses','Lisenser']]};
+let CS={};try{CS=JSON.parse(localStorage.getItem('xisaab_cs')||'{}')||{}}catch(e){CS={}}
+const saveCS=()=>{try{localStorage.setItem('xisaab_cs',JSON.stringify(CS))}catch(e){}};
+const li=()=>({so:1,en:2,no:3})[LG]||1;
+const subsOf=k=>[...(SUBS[k]||[]).map(x=>({k:x[0],n:x[li()]})),...(CS[k]||[]).map(x=>({k:x.k,n:x.n,custom:1}))];
+const subName=t=>{if(!t.s)return '';const x=subsOf(t.c).find(y=>y.k===t.s);return x?x.n:''};
+const lbl=r=>{const c=cat(r),sn=subName(r);return {ic:c.ic,main:r.desc||(sn?c.n+' › '+sn:c.n),small:r.desc?(c.n+(sn?' › '+sn:'')):''}};
+let ss='',lastSc='';
+function subsUi(){
+ if(lastSc!==sc){ss='';lastSc=sc;$('newsub').hidden=true}
+ $('subs').innerHTML=`<div class="sublbl">${esc(tr('subLbl'))}</div><div class="subrow">`+subsOf(sc).map(x=>`<button type="button" class="schip${x.k===ss?' on':''}" data-s="${x.k}">${esc(x.n)}${x.custom?`<i class="sdel" data-sdel="${x.k}">×</i>`:''}</button>`).join('')+`<button type="button" class="schip add" data-sadd="1">＋ ${esc(tr('addSub'))}</button></div>`;
+}
+const saveCC=()=>{try{localStorage.setItem('xisaab_cc',JSON.stringify(CC))}catch(e){}};
+const catsOf=ty=>{const b=CATS[ty];return [...b.slice(0,-1),...CC[ty],b[b.length-1]]};
+const cn=c=>c.n||T[LG].cats[c.k]||c.k;
+const cat=t=>{const l=catsOf(t.type),c=l.find(x=>x.k===t.c)||l[l.length-1];return {...c,n:cn(c)}};
+let sc=CATS.i[0].k;
+const rlabel=()=>(from?show(from):tr('start'))+' → '+(to?show(to):tr('today'));
+
+function save(){try{localStorage.setItem('xisaab',JSON.stringify(items))}catch(e){$('st').textContent=tr('saveErr')}}
+function withBal(){
+ let b=0;
+ return items.slice().map(t=>({...t,d:dOf(t)})).sort((x,y)=>x.d<y.d?-1:x.d>y.d?1:x.id-y.id)
+  .map(t=>{b=r2(b+(t.type==='i'?t.amt:-t.amt));return {...t,bal:b}});
+}
+function view(all){
+ const A=withBal(),f0=all?'':from,t0=all?'':to;
+ const rows=A.filter(r=>(!f0||r.d>=f0)&&(!t0||r.d<=t0));
+ const before=f0?A.filter(r=>r.d<f0):[];
+ const opening=before.length?before[before.length-1].bal:0;
+ let inc=0,exp=0;
+ rows.forEach(r=>r.type==='i'?inc+=r.amt:exp+=r.amt);
+ const closing=rows.length?rows[rows.length-1].bal:opening;
+ return {all:A,rows,opening,inc:r2(inc),exp:r2(exp),closing,hasOpening:!!f0&&before.length>0};
+}
+function charts(v){
+ const el=$('ch');
+ if(!v.rows.length){el.innerHTML=`<div class="empty">${tr('noData')}</div>`;return}
+ const M={};v.rows.forEach(r=>{const k=r.d.slice(0,7);(M[k]=M[k]||{i:0,e:0})[r.type]+=r.amt});
+ const ks=Object.keys(M).sort().slice(-6);
+ const mx=Math.max(1,...ks.map(k=>Math.max(M[k].i,M[k].e)));
+ const W=320,H=128,gap=W/ks.length,bw=Math.min(18,gap/2.6);
+ let bars='';
+ ks.forEach((k,i)=>{
+  const cx=gap*i+gap/2,hi=M[k].i/mx*88,he=M[k].e/mx*88;
+  bars+=`<rect class="bi" x="${(cx-bw-1).toFixed(1)}" y="${(100-hi).toFixed(1)}" width="${bw.toFixed(1)}" height="${hi.toFixed(1)}" rx="3"/><rect class="be" x="${(cx+1).toFixed(1)}" y="${(100-he).toFixed(1)}" width="${bw.toFixed(1)}" height="${he.toFixed(1)}" rx="3"/><text x="${cx.toFixed(1)}" y="118" text-anchor="middle">${mn()[+k.slice(5)-1].slice(0,3)}</text>`;
+ });
+ const C={},CSb={};v.rows.filter(r=>r.type==='e').forEach(r=>{const c=cat(r),key=c.ic+' '+c.n;C[key]=(C[key]||0)+r.amt;const sn=subName(r);if(sn){(CSb[key]=CSb[key]||{})[sn]=(CSb[key][sn]||0)+r.amt}});
+ const cs=Object.entries(C).sort((a,b)=>b[1]-a[1]).slice(0,5),cm=cs.length?cs[0][1]:1;
+ el.innerHTML=`<b>${tr('chart')}</b><svg viewBox="0 0 ${W} ${H}" class="svg">${bars}</svg><div class="lg"><span><i class="d bi"></i>${tr('colInc')}</span><span><i class="d be"></i>${tr('colExp')}</span></div>`+(cs.length?`<b style="display:block;margin:12px 0 6px">${tr('catExp')}</b>`+cs.map(([n,a])=>`<div class="cb"><div class="cl"><span>${esc(n)}</span><span>${f(r2(a))}</span></div><div class="ct"><div class="cf" style="width:${Math.round(a/cm*100)}%"></div></div>${CSb[n]?`<small class="cs">${Object.entries(CSb[n]).sort((x,y)=>y[1]-x[1]).map(([k,v2])=>esc(k)+' '+f(r2(v2))).join(' · ')}</small>`:''}</div>`).join(''):'');
+}
+function curUi(){const c=CTR.find(x=>x[0]===CUR);$('curbtn').textContent=c[1]+' '+CUR+' ▾'}
+function openCur(){
+ $('clist').innerHTML=CTR.map(c=>`<button type="button" class="${c[0]===CUR?'on':''}" data-c="${c[0]}"><span>${c[1]} ${c[2][LG]}</span><small>${c[0]}${c[0]===CUR?' ✓':''}</small></button>`).join('');
+ $('csheet').hidden=false;
+}
+function closeCur(){$('csheet').hidden=true}
+const hit=r=>{if(!q)return true;const c=cat(r);return ((r.desc||'')+' '+c.n+' '+subName(r)+' '+r.amt+' '+show(r.d)).toLowerCase().includes(q.toLowerCase())};
+const delBtn=r=>`<td><button class="del" data-id="${r.id}" type="button">✕</button></td>`;
+const rowSt=r=>{const L=lbl(r);return `<tr><td>${show(r.d)}</td><td class="ds">${L.ic} ${esc(L.main)}${L.small?`<small class="cs">${esc(L.small)}</small>`:''}</td><td class="r inc">${r.type==='i'?f(r.amt):''}</td><td class="r exp">${r.type==='e'?f(r.amt):''}</td><td class="r"><b>${f(r.bal)}</b></td>${delBtn(r)}</tr>`};
+const rowTy=r=>`<tr><td>${show(r.d)}</td><td class="ds">${esc(r.desc||'')}</td><td>${cat(r).ic} ${esc(cat(r).n+(subName(r)?' › '+subName(r):''))}</td><td class="r ${r.type==='i'?'inc':'exp'}"><b>${f(r.amt)}</b></td>${delBtn(r)}</tr>`;
+function recent(A){
+ const l=A.rows.slice().reverse().slice(0,10);
+ $('recent').innerHTML=l.length?l.map(r=>{const L=lbl(r);return `<div class="rc"><span class="ci">${L.ic}</span><div class="mid"><b>${esc(L.main)}</b><small>${esc(L.small)}${L.small?' · ':''}${show(r.d)}</small></div><span class="amt ${r.type==='i'?'inc':'exp'}">${r.type==='i'?'+':'−'}${f(r.amt)}</span></div>`}).join(''):`<div class="empty">${tr('noTx')}</div>`;
+}
+function statement(v){
+ $('stsum').innerHTML=`<div>${tr('colInc')}<b class="inc">${fm(v.inc)}</b></div><div>${tr('colExp')}<b class="exp">${fm(v.exp)}</b></div><div>${tr('colBal')}<b class="${v.closing<0?'exp':'inc'}">${fm(v.closing)}</b></div>`;
+ const rows=v.rows.filter(r=>(vw==='st'||r.type===vw)&&hit(r)).reverse();
+ $('more').hidden=true;
+ if(!rows.length){$('list').innerHTML=`<div class="empty">${tr('noTx')}</div>`;return}
+ const g=[];
+ rows.forEach(r=>{const m=r.d.slice(0,7);let x=g[g.length-1];if(!x||x.m!==m){x={m,rows:[],i:0,e:0};g.push(x)}x.rows.push(r);x[r.type]+=r.amt});
+ const cols=vw==='st'?6:5,rf=vw==='st'?rowSt:rowTy;
+ let shown=0,left=0,body='';
+ g.forEach((x,gi)=>{
+  const open=printMode||!!q||(x.m in mo?mo[x.m]:gi===0);
+  const sm=(vw!=='e'&&x.i?'+'+f(r2(x.i)):'')+' '+(vw!=='i'&&x.e?'−'+f(r2(x.e)):'');
+  body+=`<tr class="gh" data-m="${x.m}" data-o="${open?1:0}"><td colspan="${cols}">${open?'▾':'▸'} ${esc(mlabel(x.m))} <span>${sm}</span></td></tr>`;
+  if(!open)return;
+  x.rows.forEach(r=>{if(!printMode&&shown>=lim){left++;return}shown++;body+=rf(r)});
+ });
+ let foot='';
+ if(vw==='st'){if(v.hasOpening&&!q)foot=`<tr class="op"><td></td><td>${tr('opening')}</td><td></td><td></td><td class="r">${f(v.opening)}</td><td></td></tr>`}
+ else{const tot=r2(rows.reduce((a,r)=>a+r.amt,0));foot=`<tr class="op"><td></td><td><b>${tr('total')}</b></td><td></td><td class="r ${vw==='i'?'inc':'exp'}"><b>${f(tot)}</b></td><td></td></tr>`}
+ const head=vw==='st'?`<th>${tr('colDate')}</th><th>${tr('colDesc')}</th><th class="r">${tr('colInc')} (${CUR})</th><th class="r">${tr('colExp')} (${CUR})</th><th class="r">${tr('colBal')} (${CUR})</th><th></th>`:`<th>${tr('colDate')}</th><th>${tr('colDesc')}</th><th>${tr('colCat')}</th><th class="r">${tr(vw==='i'?'colInc':'colExp')} (${CUR})</th><th></th>`;
+ $('list').innerHTML=`<table><thead><tr>${head}</tr></thead><tbody>${body}${foot}</tbody></table>`;
+ $('more').hidden=!left;if(left)$('more').textContent=tr('more',{n:left});
+}
+function render(){
+ curUi();
+ const A=view(true),v=view();
+ $('inc').textContent=fm(A.inc);$('exp').textContent=fm(A.exp);
+ $('bal').textContent=fm(A.closing);$('bal').className='n '+(A.closing<0?'exp':'inc');
+ $('op').textContent='';
+ $('pt').textContent=tr(vw==='st'?'statement':vw==='i'?'income':'expense')+': '+rlabel()+' · '+new Date().toLocaleDateString('en-GB');
+ $('exr').textContent=tr('expRange')+': '+rlabel();
+ recent(A);charts(A);statement(v);
+}
+function showTab(t){
+ tab=t;
+ ['home','st','ch','set'].forEach(k=>{$('sec-'+k).hidden=k!==t});
+ document.querySelectorAll('#nav [data-t]').forEach(b=>b.classList.toggle('on',b.dataset.t===t));
+ try{window.scrollTo(0,0)}catch(e){}
+ render();
+}
+function chips(){subsUi();$('chips').innerHTML=catsOf(type).map(c=>`<button type="button" class="ctile${c.k===sc?' on':''}" data-k="${c.k}"><span class="ci">${c.ic}</span><span class="cnm">${esc(cn(c))}</span>${c.n?`<i class="cdel" data-del="${c.k}">×</i>`:''}</button>`).join('')+`<button type="button" class="ctile add" data-add="1"><span class="ci">＋</span><span class="cnm">${esc(tr('addCat'))}</span></button>`}
+function setType(t){type=t;$('newcat').hidden=true;sc=CATS[t][0].k;$('bi').classList.toggle('on',t==='i');$('be').classList.toggle('on',t==='e');chips()}
+function openSheet(){setType(type);$('dt').value=isoOf(new Date());$('desc').value='';$('amt').value='';$('sheet').hidden=false;setTimeout(()=>$('amt').focus(),60)}
+function closeSheet(){$('sheet').hidden=true}
+$('bi').onclick=()=>setType('i');
+$('be').onclick=()=>setType('e');
+$('chips').onclick=e=>{
+ const del=e.target.closest('[data-del]');
+ if(del){if(confirm(tr('delCat'))){const k=del.dataset.del;CC[type]=CC[type].filter(x=>x.k!==k);saveCC();if(sc===k)sc=CATS[type][0].k;chips();render()}return}
+ if(e.target.closest('[data-add]')){const r=$('newcat');r.hidden=!r.hidden;if(!r.hidden)$('ncN').focus();return}
+ const k=e.target.closest('.ctile');if(k){sc=k.dataset.k;chips()}
+};
+$('subs').onclick=e=>{
+ const del=e.target.closest('[data-sdel]');
+ if(del){if(confirm(tr('confirmDel'))){const k=del.dataset.sdel;CS[sc]=(CS[sc]||[]).filter(x=>x.k!==k);saveCS();if(ss===k)ss='';subsUi();render()}return}
+ if(e.target.closest('[data-sadd]')){const r=$('newsub');r.hidden=!r.hidden;if(!r.hidden)$('nsN').focus();return}
+ const b=e.target.closest('.schip');if(b){ss=ss===b.dataset.s?'':b.dataset.s;subsUi()}
+};
+$('nsB').onclick=()=>{
+ const n=$('nsN').value.trim();if(!n){$('nsN').focus();return}
+ const k='s'+Date.now();(CS[sc]=CS[sc]||[]).push({k,n});saveCS();
+ ss=k;$('nsN').value='';$('newsub').hidden=true;subsUi();
+};
+$('ncB').onclick=()=>{
+ const n=$('ncN').value.trim();if(!n){$('ncN').focus();return}
+ const k='c'+Date.now();CC[type].push({k,ic:($('ncE').value.trim()||'🏷'),n});saveCC();
+ sc=k;$('ncN').value='';$('newcat').hidden=true;chips();
+};
+$('qai').onclick=()=>{type='i';openSheet()};
+$('qae').onclick=()=>{type='e';openSheet()};
+$('sx').onclick=closeSheet;
+$('sheet').onclick=e=>{if(e.target.id==='sheet')closeSheet()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();closeCur()}});
+$('add').onclick=()=>{
+ const a=parseFloat($('amt').value);
+ if(!a||a<=0){$('amt').focus();return}
+ items.push({id:Date.now(),type,c:sc,s:ss||undefined,desc:$('desc').value.trim(),amt:a,d:$('dt').value||isoOf(new Date())});
+ save();render();closeSheet();
+};
+function setView(x){vw=x;lim=25;$('tS').classList.toggle('on',x==='st');$('tI').classList.toggle('on',x==='i');$('tE').classList.toggle('on',x==='e');render()}
+$('tS').onclick=()=>setView('st');$('tI').onclick=()=>setView('i');$('tE').onclick=()=>setView('e');
+$('list').onclick=ev=>{
+ const gh=ev.target.closest('.gh');
+ if(gh){mo[gh.dataset.m]=gh.dataset.o!=='1';render();return}
+ const id=ev.target.dataset&&ev.target.dataset.id;
+ if(id&&confirm(tr('confirmDel'))){items=items.filter(t=>String(t.id)!==id);save();render()}
+};
+function setRange(a,b){
+ if(a&&b&&a>b){const t=a;a=b;b=t}
+ lim=25;from=a;to=b;$('df').value=from;$('dto').value=to;render();
+}
+$('df').onchange=()=>setRange($('df').value,$('dto').value);
+$('dto').onchange=()=>setRange($('df').value,$('dto').value);
+$('qa').onclick=()=>setRange('','');
+$('qm').onclick=()=>{const n=new Date();setRange(isoOf(new Date(n.getFullYear(),n.getMonth(),1)),isoOf(new Date(n.getFullYear(),n.getMonth()+1,0)))};
+$('qy').onclick=()=>{const y=new Date().getFullYear();setRange(y+'-01-01',y+'-12-31')};
+
+/* ---------- file output ---------- */
+async function out(name,blob){
+ const file=new File([blob],name,{type:blob.type});
+ const mobile=matchMedia('(pointer:coarse)').matches;
+ if(mobile&&navigator.canShare&&navigator.canShare({files:[file]})){
+  try{await navigator.share({files:[file],title:name});return true}catch(e){if(e&&e.name==='AbortError')return false}
+ }
+ const u=URL.createObjectURL(blob);
+ const a=document.createElement('a');a.href=u;a.download=name;
+ document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000);
+ return true;
+}
+const fname=ext=>'xisaab-'+((from||to)?(from||'bilow')+'_'+(to||'hadda'):'dhammaan')+'.'+ext;
+
+/* CSV */
+function buildCsv(v){
+ const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
+ const L=[['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub'].map(k=>q(tr(k)+(['colInc','colExp','colBal'].includes(k)?' ('+CUR+')':''))).join(',')];
+ if(v.hasOpening)L.push([q(''),q(tr('opening')),q(''),'','',v.opening,q(''),q('')].join(','));
+ v.rows.forEach(r=>L.push([q(r.d),q(r.desc||''),q(r.type==='i'?tr('typeInc'):tr('typeExp')),r.type==='i'?r.amt:'',r.type==='e'?r.amt:'',r.bal,q(cat(r).n),q(subName(r))].join(',')));
+ L.push([q(''),q(tr('total')),q(''),v.inc,v.exp,v.closing,q(''),q('')].join(','));
+ return '\ufeff'+L.join('\r\n');
+}
+
+/* XLSX (no libraries, works offline) */
+const te=new TextEncoder();
+const CT=(()=>{const t=[];for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+function crc32(b){let c=0xFFFFFFFF;for(let i=0;i<b.length;i++)c=CT[(c^b[i])&255]^(c>>>8);return (c^0xFFFFFFFF)>>>0}
+function zip(files){
+ const parts=[],cen=[];let off=0;
+ const u16=n=>[n&255,(n>>8)&255],u32=n=>[n&255,(n>>8)&255,(n>>16)&255,(n>>>24)&255];
+ files.forEach(fl=>{
+  const nm=te.encode(fl.name),d=te.encode(fl.data),c=crc32(d);
+  const lh=new Uint8Array([0x50,0x4b,3,4,...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(33),...u32(c),...u32(d.length),...u32(d.length),...u16(nm.length),...u16(0)]);
+  parts.push(lh,nm,d);
+  cen.push(new Uint8Array([0x50,0x4b,1,2,...u16(20),...u16(20),...u16(0x0800),...u16(0),...u16(0),...u16(33),...u32(c),...u32(d.length),...u32(d.length),...u16(nm.length),...u16(0),...u16(0),...u16(0),...u16(0),...u32(0),...u32(off)]),nm);
+  off+=lh.length+nm.length+d.length;
+ });
+ let cs=0;cen.forEach(x=>cs+=x.length);
+ const end=new Uint8Array([0x50,0x4b,5,6,...u16(0),...u16(0),...u16(files.length),...u16(files.length),...u32(cs),...u32(off),...u16(0)]);
+ return new Blob([...parts,...cen,end],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+}
+const X='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
+const NS='xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"';
+const cs_=(r,t,s)=>`<c r="${r}" t="inlineStr" s="${s||0}"><is><t xml:space="preserve">${esc(t)}</t></is></c>`;
+const cn_=(r,n,s)=>`<c r="${r}" s="${s||0}"><v>${n}</v></c>`;
+const cf_=(r,fm,n,s)=>`<c r="${r}" s="${s||0}"><f>${fm}</f><v>${n}</v></c>`;
+function sheet(rows,cols,freeze){
+ return X+`<worksheet ${NS}><sheetViews><sheetView workbookViewId="0"${freeze?' tabSelected="1"':''}>${freeze?'<pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/>':''}</sheetView></sheetViews><cols>${cols.map((w,i)=>`<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`).join('')}</cols><sheetData>${rows.map((r,i)=>`<row r="${i+1}">${r.join('')}</row>`).join('')}</sheetData></worksheet>`;
+}
+function buildXlsx(v){
+ // styles: 0 normal,1 header,2 date,3 number,4 bold number,5 bold text
+ const styles=X+`<styleSheet ${NS}><numFmts count="2"><numFmt numFmtId="164" formatCode="${esc(CURS[CUR])}"/><numFmt numFmtId="165" formatCode="yyyy\\-mm\\-dd"/></numFmts><fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF2456D6"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="2" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="1" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
+ // Statement sheet
+ const H=['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub'].map(k=>tr(k)).map((t,i)=>cs_(String.fromCharCode(65+i)+'1',t,1));
+ const S=[H];let r=2,prev=null;
+ if(v.hasOpening){S.push([cs_('B2',tr('opening'),5),cn_('F2',v.opening,4)]);prev=2;r=3}
+ v.rows.forEach(x=>{
+  const c=[cn_('A'+r,serial(x.d),2),cs_('B'+r,x.desc||''),cs_('C'+r,x.type==='i'?tr('typeInc'):tr('typeExp'))];
+  if(x.type==='i')c.push(cn_('D'+r,x.amt,3));
+  if(x.type==='e')c.push(cn_('E'+r,x.amt,3));
+  c.push(cf_('F'+r,prev?`F${prev}+D${r}-E${r}`:`D${r}-E${r}`,x.bal,3));
+  c.push(cs_('G'+r,cat(x).n));if(subName(x))c.push(cs_('H'+r,subName(x)));S.push(c);prev=r;r++;
+ });
+ const first=v.hasOpening?3:2,last=r-1;
+ if(v.rows.length)S.push([cs_('B'+r,tr('total'),5),cf_('D'+r,`SUM(D${first}:D${last})`,v.inc,4),cf_('E'+r,`SUM(E${first}:E${last})`,v.exp,4),cf_('F'+r,`F${last}`,v.closing,4)]);
+ // Summary sheet (by month, all data)
+ const M={};v.rows.forEach(x=>{const k=x.d.slice(0,7);(M[k]=M[k]||{i:0,e:0})[x.type]+=x.amt});
+ const keys=Object.keys(M).sort();
+ const S2=[[tr('mMonth'),tr('colInc'),tr('colExp'),tr('mDiff')].map((t,i)=>cs_(String.fromCharCode(65+i)+'1',t,1))];
+ let ti=0,te_=0;
+ keys.forEach((k,i)=>{const n=i+2,a=r2(M[k].i),b=r2(M[k].e);ti+=a;te_+=b;
+  S2.push([cs_('A'+n,mlabel(k)),cn_('B'+n,a,3),cn_('C'+n,b,3),cf_('D'+n,`B${n}-C${n}`,r2(a-b),3)])});
+ if(keys.length){const n=keys.length+2;S2.push([cs_('A'+n,tr('total'),5),cf_('B'+n,`SUM(B2:B${n-1})`,r2(ti),4),cf_('C'+n,`SUM(C2:C${n-1})`,r2(te_),4),cf_('D'+n,`B${n}-C${n}`,r2(ti-te_),4)])}
+ return zip([
+  {name:'[Content_Types].xml',data:X+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/worksheets/sheet2.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/><Override PartName="/xl/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.styles+xml"/></Types>'},
+  {name:'_rels/.rels',data:X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+  {name:'xl/workbook.xml',data:X+`<workbook ${NS} xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="${esc(tr('sh1'))}" sheetId="1" r:id="rId1"/><sheet name="${esc(tr('sh2'))}" sheetId="2" r:id="rId2"/></sheets></workbook>`},
+  {name:'xl/_rels/workbook.xml.rels',data:X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
+  {name:'xl/styles.xml',data:styles},
+  {name:'xl/worksheets/sheet1.xml',data:sheet(S,[13,34,11,15,15,16,16,18],true)},
+  {name:'xl/worksheets/sheet2.xml',data:sheet(S2,[22,16,16,16],true)}
+ ]);
+}
+$('bxl').onclick=async()=>{
+ const v=view();
+ if(!v.rows.length){$('bs').textContent=tr('noData');return}
+ if(await out(fname('xlsx'),buildXlsx(v)))$('bs').textContent=tr('excelOk');
+};
+$('bcsv').onclick=async()=>{
+ const v=view();
+ if(!v.rows.length){$('bs').textContent=tr('noData');return}
+ if(await out(fname('csv'),new Blob([buildCsv(v)],{type:'text/csv'})))$('bs').textContent=tr('csvOk');
+};
+$('bpdf').onclick=()=>{printMode=true;showTab('st');setTimeout(()=>{window.print();setTimeout(()=>{printMode=false;render()},3000)},80)};
+window.addEventListener('afterprint',()=>{if(printMode){printMode=false;render()}});
+document.querySelectorAll('#nav [data-t]').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
+$('nadd').onclick=openSheet;
+$('viewAll').onclick=()=>showTab('st');
+$('q').oninput=e=>{q=e.target.value.trim();lim=25;render()};
+$('more').onclick=()=>{lim+=25;render()};
+$('bx').onclick=async()=>{
+ if(await out('xisaab-backup-'+isoOf(new Date())+'.json',new Blob([JSON.stringify({v:2,items,cats:CC,subs:CS})],{type:'application/json'})))$('bs').textContent=tr('bkOk');
+};
+$('bm').onclick=()=>$('fi').click();
+$('fi').onchange=async ev=>{
+ const file=ev.target.files[0];if(!file)return;
+ try{
+  let arr=JSON.parse(await file.text());let n=0;
+  if(arr&&!Array.isArray(arr)){const cc=arr.cats||{};for(const ty of ['i','e'])(cc[ty]||[]).forEach(c=>{if(c&&c.k&&c.n&&!CC[ty].some(x=>x.k===c.k))CC[ty].push({k:String(c.k),ic:String(c.ic||'🏷'),n:String(c.n)})});saveCC();const sb=arr.subs||{};for(const k in sb)(sb[k]||[]).forEach(x=>{if(x&&x.k&&x.n){CS[k]=CS[k]||[];if(!CS[k].some(y=>y.k===x.k))CS[k].push({k:String(x.k),n:String(x.n)})}});saveCS();arr=arr.items||[]}
+  for(const t of arr){
+   if(!t||!t.id||!(t.amt>0)||(t.type!=='i'&&t.type!=='e'))continue;
+   if(!items.some(x=>x.id===Number(t.id))){items.push({id:Number(t.id),type:t.type,desc:String(t.desc||''),amt:Number(t.amt),d:t.d||undefined,c:t.c||undefined,s:t.s||undefined});n++}
+  }
+  save();render();$('bs').textContent=tr('restored',{n});
+ }catch(e){$('bs').textContent=tr('badFile')}
+ ev.target.value='';
+};
+
+try{items=JSON.parse(localStorage.getItem('xisaab')||'[]')}catch(e){items=[]}
+items.forEach(t=>{if(!t.d)t.d=isoOf(new Date(t.id))});
+$('dt').value=isoOf(new Date());chips();
+function stat(){
+ const ready=!!(navigator.serviceWorker&&navigator.serviceWorker.controller);
+ $('st').textContent=(navigator.onLine===false?'📴 ':'')+tr(ready?'offReady':'offWait');
+}
+window.addEventListener('online',stat);window.addEventListener('offline',stat);
+function doReload(){location.reload()}
+function goTo(u){location.replace(u)}
+async function forceUpdate(){
+ const b=$('chk');
+ try{
+  b.textContent=tr('updating');
+  const r=await fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'});
+  if(!r.ok)throw 0;
+  if(navigator.serviceWorker){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(x=>x.unregister()))}
+  if(window.caches){for(const k of await caches.keys())await caches.delete(k)}
+  goTo(location.pathname+'?u='+Date.now());
+ }catch(e){b.textContent=tr('needNet');setTimeout(()=>{b.textContent=tr('chkUpd')},3000)}
+}
+$('chk').onclick=forceUpdate;
+const editing=()=>!$('sheet').hidden||!$('csheet').hidden;
+function applyUpdate(){if(editing())$('upd').hidden=false;else doReload()}
+if(navigator.serviceWorker){
+ const had=!!navigator.serviceWorker.controller;let reloaded=false;
+ navigator.serviceWorker.addEventListener('controllerchange',()=>{stat();if(had&&!reloaded){reloaded=true;applyUpdate()}});
+ navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.type==='updated'&&!reloaded){reloaded=true;applyUpdate()}});
+}
+$('updB').onclick=()=>doReload();
+function applyLang(){
+ document.documentElement.lang=LG;
+ document.title=tr('title');
+ document.querySelectorAll('[data-i]').forEach(e=>e.textContent=tr(e.dataset.i));
+ document.querySelectorAll('[data-ph]').forEach(e=>e.placeholder=tr(e.dataset.ph));
+ $('lang').value=LG;
+ stat();
+ chips();render();
+}
+$('curbtn').onclick=openCur;
+$('cx').onclick=closeCur;
+$('csheet').onclick=e=>{if(e.target.id==='csheet')closeCur()};
+$('clist').onclick=e=>{const b=e.target.closest('button');if(!b)return;CUR=b.dataset.c;try{localStorage.setItem('xisaab_cur',CUR)}catch(x){}closeCur();render()};
+$('lang').onchange=e=>{LG=e.target.value;try{localStorage.setItem('xisaab_lang',LG)}catch(x){}applyLang()};
+applyLang();
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').then(r=>r.update()).catch(()=>{})}
+</script>
+</body>
+</html>
