@@ -1,4 +1,4 @@
-const C='xisaab-v6',F=['./','index.html','manifest.json','icon.svg'];
+const C='xisaab-v12',F=['./','index.html','manifest.json','icon.svg'];
 const WAIT=3000; // wait this long for the network before falling back to the saved copy
 self.addEventListener('install',e=>{
  e.waitUntil(caches.open(C).then(c=>Promise.all(F.map(u=>c.add(new Request(u,{cache:'reload'})).catch(()=>{})))).then(()=>self.skipWaiting()));

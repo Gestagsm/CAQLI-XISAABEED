@@ -56,15 +56,43 @@ tr.op td{background:var(--bg);font-style:italic}
 .card.bal .n.exp{color:#ffd1cc}
 main{padding-bottom:100px}
 .card[hidden]{display:none}
+.gby{margin-bottom:10px}
+.gby .seg{margin-bottom:8px}
+.gby .seg button{padding:8px 2px;font-size:13px}
+.gby .seg button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.gch{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.gch .schip small{opacity:.7;margin-left:5px}
+.gmode{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;color:var(--mut)}
+.gmode .seg{margin:0;flex:0 0 auto}
+.gmode .seg button{flex:none;padding:5px 11px;font-size:12px}
+.eb{margin-bottom:10px;border:1px solid var(--bd);border-radius:12px;overflow-x:auto}
+.eh{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;background:var(--bg);cursor:pointer;font-weight:700;font-size:14px}
+.eh{flex-wrap:wrap}
+.eh .enm{flex:1 1 auto;min-width:0}
+.eh .ehs{display:flex;gap:8px;font-size:12px;flex-shrink:0;margin-left:auto}
+.ehb{display:flex;gap:6px}
+.ehb button svg{width:16px;height:16px;display:block}
+.qk button.shbtn{display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.shbtn svg{width:17px;height:17px;flex:none}
+.shgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 6px;padding:8px 0 12px}
+.shi{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none;color:var(--tx);font-size:12px;background:none;border:0;padding:0;cursor:pointer}
+.shi i{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.shi svg{width:27px;height:27px}
+#shmsg{text-align:center;min-height:18px;color:var(--inc);font-weight:700;font-size:13px}
+.ehb button{padding:3px 9px;border-radius:8px;border:1px solid var(--bd);background:transparent;color:var(--tx);font-size:14px;line-height:1.2}
+.eb table{margin:0}
+#pgaF input{margin-bottom:8px}
 .card.sv{background:linear-gradient(135deg,#0a8f55,#0e7490 55%,#2456d6);color:#fff;border:0;box-shadow:0 6px 18px rgba(14,116,144,.25)}
 .sv .sh{margin-bottom:12px}.sv .sh b{font-size:15px}
 .sv small,.sv .sublbl,.sv .sub{color:rgba(255,255,255,.8)}
 .svtop{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-.ring{position:relative;width:100px;height:100px;flex:0 0 100px}
+.ringw{flex:0 0 100px;text-align:center}
+.ring{position:relative;width:100px;height:100px}
+.sv .rl{display:block;margin-top:6px;font-size:11px;line-height:1.25}
 .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
 .ring .tk{fill:none;stroke:rgba(255,255,255,.25);stroke-width:9}
 .ring .pg{fill:none;stroke:#fff;stroke-width:9;stroke-linecap:round;transition:stroke-dasharray .6s ease}
-.ring .pc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:22px;font-weight:800;line-height:1}
+.ring .pc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:21px;font-weight:800;line-height:1}
 .ring .pc small{font-size:10px;font-weight:600;margin-top:3px}
 .svnums{flex:1;min-width:0;display:grid;gap:8px}
 .svb{background:rgba(255,255,255,.16);border-radius:12px;padding:8px 11px}
@@ -114,6 +142,14 @@ input.big{font-size:30px;text-align:center;font-weight:700;padding:14px}
 .ct{height:8px;background:var(--bg);border-radius:6px;overflow:hidden}
 .cf{height:100%;background:var(--exp);border-radius:6px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.ft{text-align:center;font-size:12px;color:var(--mut);margin:22px 0 0;line-height:1.6}
+.ft b{display:block;font-size:13px;color:var(--tx);opacity:.85;letter-spacing:.3px}
+.upd small{display:block;font-size:11px;opacity:.85;margin-top:2px}
+.uov{position:fixed;inset:0;z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;background:var(--bg);text-align:center}
+.uov[hidden]{display:none}
+.uov .ub{font-size:30px;font-weight:800;letter-spacing:1px}
+.uov .us{font-size:15px;color:var(--mut)}
+.uov small{font-size:12px;color:var(--mut)}
 .sel{display:flex;gap:6px}
 #lang{width:auto;margin:0;padding:6px 8px;font-size:13px}
 .card.bal{position:relative}
@@ -176,7 +212,7 @@ tr.gh td span{float:right;font-weight:600;color:var(--mut)}
 </head>
 <body>
 <main>
-<div class="upd noprint" id="upd" hidden><span data-i="upd"></span><button id="updB" type="button" data-i="updBtn"></button></div>
+<div class="upd noprint" id="upd" hidden><span><span data-i="upd"></span><small>OHA Inc.</small></span><button id="updB" type="button" data-i="updBtn"></button></div>
 <div class="top"><h1 data-i="title"></h1><div class="sel noprint"><select id="lang" class="noprint" aria-label="Language"><option value="so">Somali</option><option value="en">English</option><option value="no">Norsk</option></select></div></div>
 <div class="sub noprint" id="st"></div>
 <div class="pt" id="pt"></div>
@@ -210,6 +246,8 @@ tr.gh td span{float:right;font-weight:600;color:var(--mut)}
 <button id="qy" type="button" data-i="thisYear"></button>
 <button id="qa" type="button" data-i="all"></button>
 </div>
+<div class="qk noprint"><button id="bsh" type="button" class="shbtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg><span data-i="shareBtn"></span></button></div>
+<div class="gby noprint"><div class="seg" id="gseg"><button type="button" data-g="" class="on" data-i="gAll"></button><button type="button" data-g="p">👤 <span data-i="gP"></span></button><button type="button" data-g="g">👥 <span data-i="gG"></span></button><button type="button" data-g="a">🛠 <span data-i="gA"></span></button></div><div id="gchips" hidden></div></div>
 <input id="q" type="search" data-ph="searchPh">
 <div class="wrap" id="list"></div>
 <button class="morebtn noprint" id="more" type="button" hidden></button>
@@ -231,8 +269,9 @@ tr.gh td span{float:right;font-weight:600;color:var(--mut)}
 <input type="file" id="fi" accept=".json,application/json" hidden>
 <div id="bs"></div>
 </div>
-<div class="sub noprint" style="text-align:center;margin-top:8px">v4.5 · <button id="chk" type="button" class="lnk" data-i="chkUpd"></button></div>
+<div class="sub noprint" style="text-align:center;margin-top:8px">v5.1 · <b>OHA Inc.</b> · <button id="chk" type="button" class="lnk" data-i="chkUpd"></button></div>
 </section>
+<footer class="ft"><b>© <span id="yr"></span> OHA Inc.</b><span data-i="rights"></span></footer>
 </main>
 <nav class="nav noprint" id="nav">
 <button type="button" data-t="home" class="on"><i>🏠</i><span data-i="tHome"></span></button>
@@ -253,6 +292,8 @@ tr.gh td span{float:right;font-weight:600;color:var(--mut)}
 <div class="ncrow" id="newcat" hidden><input id="ncE" class="nce" maxlength="4" value="⭐"><input id="ncN" data-ph="catNamePh"><button type="button" id="ncB" class="ncb" data-i="addBtn"></button></div>
 <div id="subs"></div>
 <div class="ncrow" id="newsub" hidden><input id="nsN" data-ph="subNamePh"><button type="button" id="nsB" class="ncb" data-i="addBtn"></button></div>
+<button type="button" id="moreF" class="lnk" data-i="moreF" style="margin:0 0 10px"></button>
+<div id="pgaF" hidden><input id="fp" list="dlp" data-ph="phP"><input id="fg" list="dlg" data-ph="phG"><input id="fa" list="dla" data-ph="phA"><datalist id="dlp"></datalist><datalist id="dlg"></datalist><datalist id="dla"></datalist></div>
 <input id="desc" data-ph="descPh">
 <input id="dt" type="date">
 <button class="add" id="add" type="button" data-i="save"></button>
@@ -263,6 +304,14 @@ tr.gh td span{float:right;font-weight:600;color:var(--mut)}
 <div class="panel">
 <div class="ph"><b data-i="country"></b><button class="x" id="cx" type="button">✕</button></div>
 <div class="clist" id="clist"></div>
+</div>
+</div>
+<div class="uov noprint" id="updov" hidden><div class="ub">OHA Inc.</div><div class="us" data-i="updating"></div><small>© <span class="yr2"></span></small></div>
+<div class="sheet noprint" id="shsheet" hidden>
+<div class="panel">
+<div class="ph"><b data-i="shareTitle"></b><button class="x" id="shx" type="button">✕</button></div>
+<div class="shgrid" id="shgrid"></div>
+<div id="shmsg"></div>
 </div>
 </div>
 <script>
@@ -295,13 +344,13 @@ const show=i=>i.slice(8,10)+'/'+i.slice(5,7)+'/'+i.slice(0,4);
 const serial=i=>Math.round(Date.UTC(+i.slice(0,4),+i.slice(5,7)-1,+i.slice(8,10))/864e5)+25569;
 const r2=n=>Math.round(n*100)/100;
 const T={
-so:{tHome:'Guriga',tSet:'Dejin',recent:'Kuwii ugu dambeeyay',viewAll:'Dhammaan →',searchPh:'Raadi magac, qayb, qaddar…',more:'Tus kuwo kale ({n})',expRange:'Muddada la dhoofinayo',chkUpd:'Hubi cusboonaysiin',updating:'Waa la cusboonaysiinayaa…',needNet:'Internet ku xidh',subLbl:'Qayb hoosaad (ikhtiyaari)',addSub:'Qayb hoosaad',subNamePh:'Magaca qaybta hoosaadka',colSub:'Qayb hoosaad',offReady:'Diyaar offline ah ✓ · xogtu waxay ku kaydsan tahay qalabkan',offWait:'Internet ku fur hal mar si offline loo diyaariyo',upd:'Nooca cusub waa diyaar',updBtn:'Cusboonaysii',country:"Dooro waddanka (lacagta)",title:'Nidaamka Xisaabta',balance:'Haraaga (Balance)',income:'Dakhliga',expense:'Kharashka',opening:'Haraaga hore',statement:'Statement',from:'Laga bilaabo (From)',to:'Ilaa (To)',thisMonth:'Bishaan',thisYear:'Sannadkan',all:'Dhammaan',start:'bilowga',today:'maanta',chart:'Chart',catExp:'Kharashka qaybaha',colDate:'Taariikh',colDesc:'Faahfaahin',colType:'Nooca',colCat:'Qaybta',colInc:'Dakhli',colExp:'Kharash',colBal:'Haraaga',typeInc:'Dakhli',typeExp:'Kharash',total:'Wadarta',newTx:'Macaamil cusub',addInc:'+ Dakhli',addExp:'− Kharash',descPh:'Faahfaahin (ikhtiyaari)',save:'Kaydi',print:'🖨 PDF / Print',restore:'⬆ Soo celi',noTx:'Wax macaamil ah ma jiraan muddadan',confirmDel:'Ma tirtirtaa?',offline:'Offline · xogtu waxay ku kaydsan tahay qalabkan',noData:'Wax xog ah ma jiraan',excelOk:'✓ Excel waa diyaar',csvOk:'✓ CSV waa diyaar',bkOk:'✓ Backup waa diyaar',restored:'✓ {n} xog ayaa la soo celiyay',badFile:'Faylkan ma saxna',saveErr:'Khalad: lama kaydin',sh1:'Statement',sh2:'Soo koobid',mMonth:'Bisha',mDiff:'Farqiga',svTitle:'Kaydinta Caqliga ah',svTrend:'Kaydka 6-dii bilood ee ugu dambeeyay',svMonthly:'Kaydka bisha',svAnnual:'Kaydka sannadka (saadaal)',svF1:'Dakhli − Kharash',svF2:'Kaydka bisha × 12',svGoal:'Hadafka kaydka bishiiba',svSet:'Kaydi',svProg:'Horumarka hadafka',svLeft:'Wali waa kaa harayaa {n}',svReached:'Hadafkii waad gaadhay 🎉 (+{n} ka badan)',svGoalYr:'Hadafka sannadka: {n}',svNoGoal:'Dooro hadaf kayd oo bille ah si aad u hesho talooyin.',svNeg:'Kharashkaagu wuu ka badan yahay dakhliga bishan ({n}). Dib u eeg kharashyada.',svTipCut:'Ka dhim ilaa {n} kharashka. Ka bilow qaybta ugu badan: {c} ({a}).',svTipDay:'Kaydso {n} maalin walba {d} maalmood ee bishan ka harsan.',svTipFirst:'Marka dakhligu soo galo, isla markiiba kaydi {n} intaanad wax kharash.',svTipKeep:'Kaydka dheeraadka ah ({n}) u wareeji akoon kayd oo gaar ah.',svTipNone:'Diiwaan geli dakhligaaga iyo kharashkaaga bishan si kaydka loo xisaabiyo.',
+so:{tHome:'Guriga',tSet:'Dejin',recent:'Kuwii ugu dambeeyay',viewAll:'Dhammaan →',searchPh:'Raadi magac, qayb, qaddar…',more:'Tus kuwo kale ({n})',expRange:'Muddada la dhoofinayo',chkUpd:'Hubi cusboonaysiin',updating:'Waa la cusboonaysiinayaa…',needNet:'Internet ku xidh',subLbl:'Qayb hoosaad (ikhtiyaari)',addSub:'Qayb hoosaad',subNamePh:'Magaca qaybta hoosaadka',colSub:'Qayb hoosaad',offReady:'Diyaar offline ah ✓ · xogtu waxay ku kaydsan tahay qalabkan',offWait:'Internet ku fur hal mar si offline loo diyaariyo',upd:'Nooca cusub waa diyaar',updBtn:'Cusboonaysii',country:"Dooro waddanka (lacagta)",title:'Nidaamka Xisaabta',balance:'Haraaga (Balance)',income:'Dakhliga',expense:'Kharashka',opening:'Haraaga hore',statement:'Statement',from:'Laga bilaabo (From)',to:'Ilaa (To)',thisMonth:'Bishaan',thisYear:'Sannadkan',all:'Dhammaan',start:'bilowga',today:'maanta',chart:'Chart',catExp:'Kharashka qaybaha',colDate:'Taariikh',colDesc:'Faahfaahin',colType:'Nooca',colCat:'Qaybta',colInc:'Dakhli',colExp:'Kharash',colBal:'Haraaga',typeInc:'Dakhli',typeExp:'Kharash',total:'Wadarta',newTx:'Diiwaan cusub',addInc:'+ Dakhli',addExp:'− Kharash',descPh:'Faahfaahin (ikhtiyaari)',save:'Kaydi',print:'🖨 PDF / Print',restore:'⬆ Soo celi',noTx:'Wax dhaqdhaqaaq ah ma jiro muddadan',confirmDel:'Ma tirtirtaa?',offline:'Offline · xogtu waxay ku kaydsan tahay qalabkan',noData:'Wax xog ah ma jiraan',excelOk:'✓ Excel waa diyaar',csvOk:'✓ CSV waa diyaar',bkOk:'✓ Backup waa diyaar',restored:'✓ {n} xog ayaa la soo celiyay',badFile:'Faylkan ma saxna',saveErr:'Khalad: lama kaydin',sh1:'Statement',sh2:'Soo koobid',mMonth:'Bisha',mDiff:'Farqiga',rights:'Xuquuqda oo dhan way dhowran yihiin',shareBtn:'Share (la wadaag)',shareTitle:'La wadaag',shCopy:'Koobi',shMore:'Kale',shCopied:'✓ Statement-ka waa la koobiyeeyay',gAll:'Dhammaan',gP:'Shaqsi',gG:'Koox',gA:'Adeeg',gNone:'Aan la qeexin',gSep:'Mid mid',gComb:'Isku wada',gPick:'Dooro mid ama in ka badan',gEmpty:'Wali wax lama diiwaan gelin. Ku dar markaad diiwaan cusub samaynayso.',moreF:'➕ Shaqsi · Koox · Adeeg (ikhtiyaari)',phP:'Magaca shaqsiga (ikhtiyaari)',phG:'Koox (ikhtiyaari)',phA:'Adeeg (ikhtiyaari)',svTitle:'Kaydinta Caqliga ah',svTrend:'Kaydka 6-dii bilood ee ugu dambeeyay',svMonthly:'Kaydka bisha',svAnnual:'Kaydka sannadka (saadaal)',svF1:'Dakhli − Kharash',svF2:'Kaydka bisha × 12',svGoal:'Hadafka kaydka bishiiba',svSet:'Kaydi',svProg:'Horumarka hadafka',svLeft:'Wali waa kaa harayaa {n}',svReached:'Hadafkii waad gaadhay 🎉 (+{n} ka badan)',svGoalYr:'Hadafka sannadka: {n}',svNoGoal:'Dooro hadaf kayd oo bille ah si aad u hesho talooyin.',svNeg:'Kharashkaagu wuu ka badan yahay dakhliga bishan ({n}). Dib u eeg kharashyada.',svTipCut:'Ka dhim ilaa {n} kharashka. Ka bilow qaybta ugu badan: {c} ({a}).',svTipDay:'Kaydso {n} maalin walba {d} maalmood ee bishan ka harsan.',svTipFirst:'Marka dakhligu soo galo, isla markiiba kaydi {n} intaanad wax kharash.',svTipKeep:'Kaydka dheeraadka ah ({n}) u wareeji akoon kayd oo gaar ah.',svTipNone:'Diiwaan geli dakhligaaga iyo kharashkaaga bishan si kaydka loo xisaabiyo.',
  mn:['Janaayo','Febraayo','Maarso','Abriil','Maajo','Juun','Luuliyo','Ogosto','Sebtembar','Oktoobar','Nofembar','Desembar'],
  addCat:'Qayb cusub',catNamePh:'Magaca qaybta',addBtn:'Ku dar',delCat:'Tirtir qaybtan?',cats:{'mushahar':'Mushahar','ganacsi':'Ganacsi','freelance':'Shaqo gaar ah','iibka':'Iib','kiro-dakhli':'Kiro la helay','hawlaad':'Hawlaad la helay','bonus':'Bonus','maalgashi':'Maalgashi','dib-celin':'Lacag soo laabatay','amaah':'Amaah la helay','hadiyad':'Hadiyad','dakhli-kale':'Kale','cunto':'Cunto','makhaayad':'Makhaayad','kiro':'Kiro','biil':'Biilal','telefoon':'Telefoon & Internet','gaadiid':'Gaadiid','shidaal':'Shidaal','caafimaad':'Caafimaad','waxbarasho':'Waxbarasho','iib':'Wax iibsasho','dharka':'Dhar','guri':'Guri & alaab','caruur':'Caruur & qoys','hawlaad-diray':'Lacag loo diray','sadaqo':'Sadaqo & Zakaat','madadaalo':'Madadaalo','safar':'Safar','deyn-bixin':'Bixinta deynta','ganacsi-kharash':'Kharashka ganacsiga','cashuur':'Cashuur & khidmad','shaqaale':'Shaqaale','kharash-kale':'Kale'}},
-en:{tHome:'Home',tSet:'Settings',recent:'Recent',viewAll:'View all →',searchPh:'Search name, category, amount…',more:'Show more ({n})',expRange:'Export range',chkUpd:'Check for updates',updating:'Updating…',needNet:'Connect to the internet first',subLbl:'Subcategory (optional)',addSub:'Subcategory',subNamePh:'Subcategory name',colSub:'Subcategory',offReady:'Ready offline ✓ · data is stored on this device',offWait:'Open once online to enable offline use',upd:'New version available',updBtn:'Update',country:"Choose country (currency)",title:'Accounting System',balance:'Balance',income:'Income',expense:'Expenses',opening:'Opening balance',statement:'Statement',from:'From',to:'To',thisMonth:'This month',thisYear:'This year',all:'All',start:'start',today:'today',chart:'Chart',catExp:'Expenses by category',colDate:'Date',colDesc:'Description',colType:'Type',colCat:'Category',colInc:'Income',colExp:'Expense',colBal:'Balance',typeInc:'Income',typeExp:'Expense',total:'Total',newTx:'New transaction',addInc:'+ Income',addExp:'− Expense',descPh:'Description (optional)',save:'Save',print:'🖨 PDF / Print',restore:'⬆ Restore',noTx:'No transactions in this period',confirmDel:'Delete this?',offline:'Offline · data is stored on this device',noData:'No data',excelOk:'✓ Excel is ready',csvOk:'✓ CSV is ready',bkOk:'✓ Backup is ready',restored:'✓ {n} records restored',badFile:'Invalid file',saveErr:'Error: could not save',sh1:'Statement',sh2:'Summary',mMonth:'Month',mDiff:'Difference',svTitle:'Smart Savings',svTrend:'Savings, last 6 months',svMonthly:'Monthly Savings',svAnnual:'Annual Savings (projected)',svF1:'Income − Expenses',svF2:'Monthly Savings × 12',svGoal:'Monthly savings goal',svSet:'Save',svProg:'Goal progress',svLeft:'{n} left to reach your goal',svReached:'Goal reached 🎉 ({n} above goal)',svGoalYr:'Yearly goal: {n}',svNoGoal:'Set a monthly savings goal to get tips.',svNeg:'You are spending more than you earn this month ({n}). Review your expenses.',svTipCut:'Cut about {n} from expenses. Start with your biggest category: {c} ({a}).',svTipDay:'Set aside {n} per day for the {d} days left this month.',svTipFirst:'Move {n} to savings as soon as income arrives, before you spend.',svTipKeep:'Move your extra savings ({n}) into a separate savings account.',svTipNone:"Add this month's income and expenses to calculate your savings.",
+en:{tHome:'Home',tSet:'Settings',recent:'Recent',viewAll:'View all →',searchPh:'Search name, category, amount…',more:'Show more ({n})',expRange:'Export range',chkUpd:'Check for updates',updating:'Updating…',needNet:'Connect to the internet first',subLbl:'Subcategory (optional)',addSub:'Subcategory',subNamePh:'Subcategory name',colSub:'Subcategory',offReady:'Ready offline ✓ · data is stored on this device',offWait:'Open once online to enable offline use',upd:'New version available',updBtn:'Update',country:"Choose country (currency)",title:'Accounting System',balance:'Balance',income:'Income',expense:'Expenses',opening:'Opening balance',statement:'Statement',from:'From',to:'To',thisMonth:'This month',thisYear:'This year',all:'All',start:'start',today:'today',chart:'Chart',catExp:'Expenses by category',colDate:'Date',colDesc:'Description',colType:'Type',colCat:'Category',colInc:'Income',colExp:'Expense',colBal:'Balance',typeInc:'Income',typeExp:'Expense',total:'Total',newTx:'New transaction',addInc:'+ Income',addExp:'− Expense',descPh:'Description (optional)',save:'Save',print:'🖨 PDF / Print',restore:'⬆ Restore',noTx:'No transactions in this period',confirmDel:'Delete this?',offline:'Offline · data is stored on this device',noData:'No data',excelOk:'✓ Excel is ready',csvOk:'✓ CSV is ready',bkOk:'✓ Backup is ready',restored:'✓ {n} records restored',badFile:'Invalid file',saveErr:'Error: could not save',sh1:'Statement',sh2:'Summary',mMonth:'Month',mDiff:'Difference',rights:'All rights reserved',shareBtn:'Share',shareTitle:'Share',shCopy:'Copy',shMore:'More',shCopied:'✓ Statement copied',gAll:'All',gP:'Person',gG:'Group',gA:'Service',gNone:'Unassigned',gSep:'Separate',gComb:'Combined',gPick:'Select one or more',gEmpty:'Nothing recorded yet. Add it when creating a new record.',moreF:'➕ Person · Group · Service (optional)',phP:'Person name (optional)',phG:'Group (optional)',phA:'Service (optional)',svTitle:'Smart Savings',svTrend:'Savings, last 6 months',svMonthly:'Monthly Savings',svAnnual:'Annual Savings (projected)',svF1:'Income − Expenses',svF2:'Monthly Savings × 12',svGoal:'Monthly savings goal',svSet:'Save',svProg:'Goal progress',svLeft:'{n} left to reach your goal',svReached:'Goal reached 🎉 ({n} above goal)',svGoalYr:'Yearly goal: {n}',svNoGoal:'Set a monthly savings goal to get tips.',svNeg:'You are spending more than you earn this month ({n}). Review your expenses.',svTipCut:'Cut about {n} from expenses. Start with your biggest category: {c} ({a}).',svTipDay:'Set aside {n} per day for the {d} days left this month.',svTipFirst:'Move {n} to savings as soon as income arrives, before you spend.',svTipKeep:'Move your extra savings ({n}) into a separate savings account.',svTipNone:"Add this month's income and expenses to calculate your savings.",
  mn:['January','February','March','April','May','June','July','August','September','October','November','December'],
  addCat:'New category',catNamePh:'Category name',addBtn:'Add',delCat:'Delete this category?',cats:{'mushahar':'Salary','ganacsi':'Business','freelance':'Freelance','iibka':'Sales','kiro-dakhli':'Rental income','hawlaad':'Money received','bonus':'Bonus','maalgashi':'Investment','dib-celin':'Refund','amaah':'Loan received','hadiyad':'Gifts','dakhli-kale':'Other','cunto':'Food','makhaayad':'Eating out','kiro':'Rent','biil':'Bills','telefoon':'Phone & Internet','gaadiid':'Transport','shidaal':'Fuel','caafimaad':'Health','waxbarasho':'Education','iib':'Shopping','dharka':'Clothing','guri':'Home','caruur':'Kids & family','hawlaad-diray':'Money sent','sadaqo':'Charity & Zakat','madadaalo':'Entertainment','safar':'Travel','deyn-bixin':'Debt payment','ganacsi-kharash':'Business costs','cashuur':'Taxes & fees','shaqaale':'Staff & wages','kharash-kale':'Other'}},
-no:{tHome:'Hjem',tSet:'Innstillinger',recent:'Siste',viewAll:'Se alle →',searchPh:'Søk navn, kategori, beløp…',more:'Vis flere ({n})',expRange:'Eksportperiode',chkUpd:'Se etter oppdatering',updating:'Oppdaterer…',needNet:'Koble til internett først',subLbl:'Underkategori (valgfritt)',addSub:'Underkategori',subNamePh:'Navn på underkategori',colSub:'Underkategori',offReady:'Klar for frakoblet bruk ✓ · data lagres på denne enheten',offWait:'Åpne én gang med nett for å bruke frakoblet',upd:'Ny versjon tilgjengelig',updBtn:'Oppdater',country:"Velg land (valuta)",title:'Regnskapssystem',balance:'Saldo',income:'Inntekt',expense:'Utgifter',opening:'Inngående saldo',statement:'Kontoutskrift',from:'Fra',to:'Til',thisMonth:'Denne måneden',thisYear:'I år',all:'Alle',start:'start',today:'i dag',chart:'Diagram',catExp:'Utgifter per kategori',colDate:'Dato',colDesc:'Beskrivelse',colType:'Type',colCat:'Kategori',colInc:'Inntekt',colExp:'Utgift',colBal:'Saldo',typeInc:'Inntekt',typeExp:'Utgift',total:'Sum',newTx:'Ny transaksjon',addInc:'+ Inntekt',addExp:'− Utgift',descPh:'Beskrivelse (valgfritt)',save:'Lagre',print:'🖨 PDF / Skriv ut',restore:'⬆ Gjenopprett',noTx:'Ingen transaksjoner i denne perioden',confirmDel:'Slette denne?',offline:'Frakoblet · data lagres på denne enheten',noData:'Ingen data',excelOk:'✓ Excel er klar',csvOk:'✓ CSV er klar',bkOk:'✓ Sikkerhetskopi er klar',restored:'✓ {n} poster gjenopprettet',badFile:'Ugyldig fil',saveErr:'Feil: kunne ikke lagre',sh1:'Kontoutskrift',sh2:'Oppsummering',mMonth:'Måned',mDiff:'Differanse',svTitle:'Smart sparing',svTrend:'Sparing siste 6 måneder',svMonthly:'Månedlig sparing',svAnnual:'Årlig sparing (prognose)',svF1:'Inntekt − Utgifter',svF2:'Månedlig sparing × 12',svGoal:'Sparemål per måned',svSet:'Lagre',svProg:'Fremdrift mot målet',svLeft:'{n} igjen til målet',svReached:'Målet er nådd 🎉 ({n} over målet)',svGoalYr:'Årlig mål: {n}',svNoGoal:'Sett et månedlig sparemål for å få tips.',svNeg:'Du bruker mer enn du tjener denne måneden ({n}). Gå gjennom utgiftene.',svTipCut:'Kutt rundt {n} i utgifter. Start med den største kategorien: {c} ({a}).',svTipDay:'Sett av {n} per dag de {d} gjenværende dagene denne måneden.',svTipFirst:'Overfør {n} til sparing så snart inntekten kommer, før du bruker penger.',svTipKeep:'Flytt ekstra sparing ({n}) til en egen sparekonto.',svTipNone:'Legg inn inntekter og utgifter denne måneden for å beregne sparingen.',
+no:{tHome:'Hjem',tSet:'Innstillinger',recent:'Siste',viewAll:'Se alle →',searchPh:'Søk navn, kategori, beløp…',more:'Vis flere ({n})',expRange:'Eksportperiode',chkUpd:'Se etter oppdatering',updating:'Oppdaterer…',needNet:'Koble til internett først',subLbl:'Underkategori (valgfritt)',addSub:'Underkategori',subNamePh:'Navn på underkategori',colSub:'Underkategori',offReady:'Klar for frakoblet bruk ✓ · data lagres på denne enheten',offWait:'Åpne én gang med nett for å bruke frakoblet',upd:'Ny versjon tilgjengelig',updBtn:'Oppdater',country:"Velg land (valuta)",title:'Regnskapssystem',balance:'Saldo',income:'Inntekt',expense:'Utgifter',opening:'Inngående saldo',statement:'Kontoutskrift',from:'Fra',to:'Til',thisMonth:'Denne måneden',thisYear:'I år',all:'Alle',start:'start',today:'i dag',chart:'Diagram',catExp:'Utgifter per kategori',colDate:'Dato',colDesc:'Beskrivelse',colType:'Type',colCat:'Kategori',colInc:'Inntekt',colExp:'Utgift',colBal:'Saldo',typeInc:'Inntekt',typeExp:'Utgift',total:'Sum',newTx:'Ny transaksjon',addInc:'+ Inntekt',addExp:'− Utgift',descPh:'Beskrivelse (valgfritt)',save:'Lagre',print:'🖨 PDF / Skriv ut',restore:'⬆ Gjenopprett',noTx:'Ingen transaksjoner i denne perioden',confirmDel:'Slette denne?',offline:'Frakoblet · data lagres på denne enheten',noData:'Ingen data',excelOk:'✓ Excel er klar',csvOk:'✓ CSV er klar',bkOk:'✓ Sikkerhetskopi er klar',restored:'✓ {n} poster gjenopprettet',badFile:'Ugyldig fil',saveErr:'Feil: kunne ikke lagre',sh1:'Kontoutskrift',sh2:'Oppsummering',mMonth:'Måned',mDiff:'Differanse',rights:'Alle rettigheter forbeholdt',shareBtn:'Del',shareTitle:'Del',shCopy:'Kopier',shMore:'Mer',shCopied:'✓ Kontoutskrift kopiert',gAll:'Alle',gP:'Person',gG:'Gruppe',gA:'Tjeneste',gNone:'Ikke angitt',gSep:'Separat',gComb:'Samlet',gPick:'Velg én eller flere',gEmpty:'Ingenting registrert ennå. Legg til når du oppretter en ny post.',moreF:'➕ Person · Gruppe · Tjeneste (valgfritt)',phP:'Personnavn (valgfritt)',phG:'Gruppe (valgfritt)',phA:'Tjeneste (valgfritt)',svTitle:'Smart sparing',svTrend:'Sparing siste 6 måneder',svMonthly:'Månedlig sparing',svAnnual:'Årlig sparing (prognose)',svF1:'Inntekt − Utgifter',svF2:'Månedlig sparing × 12',svGoal:'Sparemål per måned',svSet:'Lagre',svProg:'Fremdrift mot målet',svLeft:'{n} igjen til målet',svReached:'Målet er nådd 🎉 ({n} over målet)',svGoalYr:'Årlig mål: {n}',svNoGoal:'Sett et månedlig sparemål for å få tips.',svNeg:'Du bruker mer enn du tjener denne måneden ({n}). Gå gjennom utgiftene.',svTipCut:'Kutt rundt {n} i utgifter. Start med den største kategorien: {c} ({a}).',svTipDay:'Sett av {n} per dag de {d} gjenværende dagene denne måneden.',svTipFirst:'Overfør {n} til sparing så snart inntekten kommer, før du bruker penger.',svTipKeep:'Flytt ekstra sparing ({n}) til en egen sparekonto.',svTipNone:'Legg inn inntekter og utgifter denne måneden for å beregne sparingen.',
  mn:['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'],
  addCat:'Ny kategori',catNamePh:'Kategorinavn',addBtn:'Legg til',delCat:'Slette denne kategorien?',cats:{'mushahar':'Lønn','ganacsi':'Forretning','freelance':'Frilans','iibka':'Salg','kiro-dakhli':'Leieinntekt','hawlaad':'Mottatte penger','bonus':'Bonus','maalgashi':'Investering','dib-celin':'Refusjon','amaah':'Lån mottatt','hadiyad':'Gaver','dakhli-kale':'Annet','cunto':'Mat','makhaayad':'Spise ute','kiro':'Husleie','biil':'Regninger','telefoon':'Telefon og internett','gaadiid':'Transport','shidaal':'Drivstoff','caafimaad':'Helse','waxbarasho':'Utdanning','iib':'Shopping','dharka':'Klær','guri':'Hjem','caruur':'Barn og familie','hawlaad-diray':'Penger sendt','sadaqo':'Veldedighet og zakat','madadaalo':'Underholdning','safar':'Reise','deyn-bixin':'Gjeldsbetaling','ganacsi-kharash':'Forretningsutgifter','cashuur':'Skatt og gebyrer','shaqaale':'Ansatte og lønn','kharash-kale':'Annet'}}
 };
@@ -336,8 +385,112 @@ function withBal(){
  return items.slice().map(t=>({...t,d:dOf(t)})).sort((x,y)=>x.d<y.d?-1:x.d>y.d?1:x.id-y.id)
   .map(t=>{b=r2(b+(t.type==='i'?t.amt:-t.amt));return {...t,bal:b}});
 }
+let gd='',gsel=new Set(),gsep=true,gopen={};
+const GN={p:['gP','👤'],g:['gG','👥'],a:['gA','🛠']};
+const gkey=r=>String(r[gd]||'').trim().toLowerCase();
+const rebal=rs=>{let b=0;return rs.map(t=>{b=r2(b+(t.type==='i'?t.amt:-t.amt));return {...t,bal:b}})};
+const gname=k=>{if(k==='')return tr('gNone');const t=items.find(x=>gkey(x)===k);return t?String(t[gd]).trim():k};
+const gtitle=()=>gd?' · '+tr(GN[gd][0])+(gsel.size?': '+[...gsel].map(gname).join(', '):''):'';
+const gsuf=()=>{if(!gd)return '';if(gsel.size!==1)return '-'+({p:'shaqsi',g:'koox',a:'adeeg'})[gd];const k=[...gsel][0];return '-'+(k===''?'aan-la-qeexin':gname(k).replace(/[^\w\u00C0-\u024F]+/g,'_'))};
+function gvalues(){
+ const m=new Map();
+ items.forEach(t=>{const raw=String(t[gd]||'').trim(),k=raw.toLowerCase(),o=m.get(k)||{k,n:raw,c:0};o.c++;m.set(k,o)});
+ return [...m.values()].sort((a,b)=>a.k===''?1:b.k===''?-1:a.n.localeCompare(b.n));
+}
+function gui(){
+ $('gseg').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.g===gd));
+ const box=$('gchips');
+ if(!gd){box.hidden=true;box.innerHTML='';return}
+ box.hidden=false;
+ const vals=gvalues();
+ box.innerHTML=`<div class="gch">${vals.length?vals.map(x=>`<button type="button" class="schip${gsel.has(x.k)?' on':''}" data-k="${esc(x.k)}">${esc(x.k===''?tr('gNone'):x.n)}<small>${x.c}</small></button>`).join(''):`<span class="sub">${esc(tr('gEmpty'))}</span>`}</div><div class="gmode"><span>${esc(tr('gPick'))}</span><div class="seg"><button type="button" data-m="1" class="${gsep?'on':''}">${esc(tr('gSep'))}</button><button type="button" data-m="0" class="${gsep?'':'on'}">${esc(tr('gComb'))}</button></div></div>`;
+}
+function sepData(){
+ const G=new Map();
+ withBal().forEach(r=>{const k=gkey(r);if(gsel.size&&!gsel.has(k))return;let g=G.get(k);if(!g){g={k,n:String(r[gd]||'').trim(),rows:[]};G.set(k,g)}g.rows.push(r)});
+ const list=[...G.values()].sort((a,b)=>a.k===''?1:b.k===''?-1:a.n.localeCompare(b.n)).map(g=>{
+  const full=rebal(g.rows),rows=full.filter(r=>(!from||r.d>=from)&&(!to||r.d<=to)),before=from?full.filter(r=>r.d<from):[];
+  const opening=before.length?before[before.length-1].bal:0;let i=0,e=0;rows.forEach(r=>r.type==='i'?i+=r.amt:e+=r.amt);
+  return {...g,rows,opening,hasOp:!!from&&before.length>0,inc:r2(i),exp:r2(e),closing:rows.length?rows[rows.length-1].bal:opening,show:rows.filter(r=>(vw==='st'||r.type===vw)&&hit(r)).reverse()};
+ }).filter(g=>g.show.length);
+ return list;
+}
+function sepStatement(){
+ const list=sepData();
+ if(!list.length){$('list').innerHTML=`<div class="empty">${tr('noTx')}</div>`;return}
+ const rf=vw==='st'?rowSt:rowTy;
+ const head=vw==='st'?`<th>${tr('colDate')}</th><th>${tr('colDesc')}</th><th class="r">${tr('colInc')} (${CUR})</th><th class="r">${tr('colExp')} (${CUR})</th><th class="r">${tr('colBal')} (${CUR})</th><th></th>`:`<th>${tr('colDate')}</th><th>${tr('colDesc')}</th><th>${tr('colCat')}</th><th class="r">${tr(vw==='i'?'colInc':'colExp')} (${CUR})</th><th></th>`;
+ $('list').innerHTML=list.map(g=>{
+  const open=printMode||list.length===1||!!q||!!gopen[g.k];
+  const nm=g.k===''?tr('gNone'):g.n;
+  const sums=vw==='st'?`<b class="inc">+${f(g.inc)}</b><b class="exp">−${f(g.exp)}</b><b class="${g.closing<0?'exp':'inc'}">${f(g.closing)}</b>`:vw==='i'?`<b class="inc">+${f(g.inc)}</b>`:`<b class="exp">−${f(g.exp)}</b>`;
+  let tb='';
+  if(open){
+   let foot='';
+   if(vw==='st'){if(g.hasOp&&!q)foot=`<tr class="op"><td></td><td>${tr('opening')}</td><td></td><td></td><td class="r">${f(g.opening)}</td><td></td></tr>`}
+   else{const tot=r2(g.show.reduce((a,r)=>a+r.amt,0));foot=`<tr class="op"><td></td><td><b>${tr('total')}</b></td><td></td><td class="r ${vw==='i'?'inc':'exp'}"><b>${f(tot)}</b></td><td></td></tr>`}
+   tb=`<table><thead><tr>${head}</tr></thead><tbody>${g.show.map(rf).join('')}${foot}</tbody></table>`;
+  }
+  return `<div class="eb"><div class="eh" data-ge="${esc(g.k)}" data-o="${open?1:0}"><span class="enm">${open?'▾':'▸'} ${GN[gd][1]} ${esc(nm)} <small style="color:var(--mut)">(${g.show.length})</small></span><span class="ehb noprint"><button type="button" data-sh="${esc(g.k)}" title="Share">${SHI}</button><button type="button" data-pr="${esc(g.k)}" title="PDF">🖨</button></span><span class="ehs">${sums}</span></div>${tb}</div>`;
+ }).join('');
+}
+function stmtText(){
+ const v=view(),L=[],cap=60;
+ L.push('📄 '+tr(vw==='st'?'statement':vw==='i'?'income':'expense')+' · '+rlabel()+gtitle());
+ L.push(tr('colInc')+': '+fm(v.inc)+' | '+tr('colExp')+': '+fm(v.exp)+' | '+tr('colBal')+': '+fm(v.closing));
+ const line=r=>{const l=lbl(r);return show(r.d)+' · '+l.main+(l.small?' ('+l.small+')':'')+' · '+(r.type==='i'?'+':'−')+f(r.amt)+(vw==='st'?' → '+f(r.bal):'')};
+ if(gd&&gsep){
+  sepData().forEach(g=>{
+   L.push('');L.push('▪ '+(g.k===''?tr('gNone'):g.n)+' — +'+f(g.inc)+' / −'+f(g.exp)+' = '+fm(g.closing));
+   const a=g.show.slice().reverse();a.slice(-cap).forEach(r=>L.push('  '+line(r)));
+   if(a.length>cap)L.push('  … +'+(a.length-cap));
+  });
+ }else{
+  const rows=v.rows.filter(r=>(vw==='st'||r.type===vw)&&hit(r));
+  L.push('');rows.slice(-cap).forEach(r=>L.push(line(r)));
+  if(rows.length>cap)L.push('… +'+(rows.length-cap));
+ }
+ L.push('');L.push(tr('title')+' · OHA Inc. · '+new Date().toLocaleDateString('en-GB'));
+ return L.join('\n');
+}
+const SHI='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg>';
+const SHW='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z"/><path fill="#fff" stroke="none" d="M9 8c0 3.3 2.7 6 6 6l.9-1.4-1.8-.9-.9.7c-.9-.3-1.7-1.1-2-2l.7-.9-.9-1.8z"/></svg>';
+const SHT='<svg viewBox="0 0 24 24" fill="#fff"><path d="M21 4 3 11.2l4.6 1.7L9.5 19l2.8-3.2 4.7 3.5z"/></svg>';
+const SHS='<svg viewBox="0 0 24 24" fill="#fff"><path d="M4 4h16v12H9.5L4 20.5z"/></svg>';
+const SHE='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>';
+const SHC='<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="8.5" y="8.5" width="11" height="11" rx="2"/><path d="M15.5 8.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7.5a2 2 0 0 0 2 2h2.5"/></svg>';
+const SHM='<svg viewBox="0 0 24 24" fill="#fff"><circle cx="5.5" cy="12" r="1.8"/><circle cx="12" cy="12" r="1.8"/><circle cx="18.5" cy="12" r="1.8"/></svg>';
+let shTxt='';
+function openShare(text){
+ shTxt=text;$('shmsg').textContent='';
+ const t=encodeURIComponent(text),sj=encodeURIComponent(tr('title')+' · '+tr('statement'));
+ const it=[['#25D366',SHW,'WhatsApp','https://wa.me/?text='+t],['#229ED9',SHT,'Telegram','https://t.me/share/url?url=%20&text='+t],['#34C759',SHS,'SMS','sms:?&body='+t],['#EA4335',SHE,'Email','mailto:?subject='+sj+'&body='+t]];
+ $('shgrid').innerHTML=it.map(x=>`<a class="shi" href="${x[3]}"${x[3].startsWith('http')?' target="_blank" rel="noopener"':''} data-lk="1"><i style="background:${x[0]}">${x[1]}</i>${x[2]}</a>`).join('')
+  +`<button type="button" class="shi" id="shcp"><i style="background:#6B7280">${SHC}</i>${esc(tr('shCopy'))}</button>`
+  +(navigator.share?`<button type="button" class="shi" id="shmore"><i style="background:#6B7280">${SHM}</i>${esc(tr('shMore'))}</button>`:'');
+ $('shsheet').hidden=false;
+}
+function closeShare(){$('shsheet').hidden=true}
+function entText(g){
+ const L=[],cap=100,rows=g.rows.filter(r=>vw==='st'||r.type===vw);
+ const line=r=>{const l=lbl(r);return show(r.d)+' · '+l.main+(l.small?' ('+l.small+')':'')+' · '+(r.type==='i'?'+':'−')+f(r.amt)+(vw==='st'?' → '+f(r.bal):'')};
+ L.push('📄 '+tr('statement')+' · '+GN[gd][1]+' '+(g.k===''?tr('gNone'):g.n));
+ L.push(rlabel());
+ if(vw==='st'&&g.hasOp)L.push(tr('opening')+': '+fm(g.opening));
+ L.push('');rows.slice(-cap).forEach(r=>L.push(line(r)));
+ if(rows.length>cap)L.push('… +'+(rows.length-cap));
+ L.push('');
+ L.push(tr('colInc')+': '+fm(g.inc)+' | '+tr('colExp')+': '+fm(g.exp)+' | '+tr('colBal')+': '+fm(g.closing));
+ L.push('');L.push(tr('title')+' · OHA Inc. · '+new Date().toLocaleDateString('en-GB'));
+ return L.join('\n');
+}
+function shareEnt(k){const g=sepData().find(x=>x.k===k);if(g)openShare(entText(g))}
+let prSel=null;
+function endPrint(){if(prSel){gsel=prSel;prSel=null}printMode=false;render()}
+function printEnt(k){prSel=new Set(gsel);gsel=new Set([k]);printMode=true;render();setTimeout(()=>{window.print();setTimeout(endPrint,3000)},80)}
 function view(all){
- const A=withBal(),f0=all?'':from,t0=all?'':to;
+ let A=withBal();if(!all&&gd&&gsel.size)A=rebal(A.filter(r=>gsel.has(gkey(r))));
+ const f0=all?'':from,t0=all?'':to;
  const rows=A.filter(r=>(!f0||r.d>=f0)&&(!t0||r.d<=t0));
  const before=f0?A.filter(r=>r.d<f0):[];
  const opening=before.length?before[before.length-1].bal:0;
@@ -397,7 +550,7 @@ function savings(A){
  }
  // ring
  const CIR=2*Math.PI*40;
- const ring=`<div class="ring"><svg viewBox="0 0 100 100"><circle class="tk" cx="50" cy="50" r="40"/><circle class="pg" cx="50" cy="50" r="40" stroke-dasharray="${(pct/100*CIR).toFixed(1)} ${CIR.toFixed(1)}"/></svg><div class="pc"><span>${GOAL>0?pct+'%':'🎯'}</span>${GOAL>0?`<small>${esc(tr('svProg'))}</small>`:''}</div></div>`;
+ const ring=`<div class="ringw"><div class="ring"><svg viewBox="0 0 100 100"><circle class="tk" cx="50" cy="50" r="40"/><circle class="pg" cx="50" cy="50" r="40" stroke-dasharray="${(pct/100*CIR).toFixed(1)} ${CIR.toFixed(1)}"/></svg><div class="pc"><span>${GOAL>0?pct+'%':'🎯'}</span></div></div>${GOAL>0?`<small class="rl">${esc(tr('svProg'))}</small>`:''}</div>`;
  // milestones
  const mst=GOAL>0?`<div class="ms">${[25,50,75,100].map(m=>`<span class="${pct>=m?'ok':''}">${pct>=m?'✓ ':''}${m}%</span>`).join('')}</div>`:'';
  // 6-month savings chart
@@ -428,7 +581,7 @@ function openCur(){
  $('csheet').hidden=false;
 }
 function closeCur(){$('csheet').hidden=true}
-const hit=r=>{if(!q)return true;const c=cat(r);return ((r.desc||'')+' '+c.n+' '+subName(r)+' '+r.amt+' '+show(r.d)).toLowerCase().includes(q.toLowerCase())};
+const hit=r=>{if(!q)return true;const c=cat(r);return ((r.desc||'')+' '+(r.p||'')+' '+(r.g||'')+' '+(r.a||'')+' '+c.n+' '+subName(r)+' '+r.amt+' '+show(r.d)).toLowerCase().includes(q.toLowerCase())};
 const delBtn=r=>`<td><button class="del" data-id="${r.id}" type="button">✕</button></td>`;
 const rowSt=r=>{const L=lbl(r);return `<tr><td>${show(r.d)}</td><td class="ds">${L.ic} ${esc(L.main)}${L.small?`<small class="cs">${esc(L.small)}</small>`:''}</td><td class="r inc">${r.type==='i'?f(r.amt):''}</td><td class="r exp">${r.type==='e'?f(r.amt):''}</td><td class="r"><b>${f(r.bal)}</b></td>${delBtn(r)}</tr>`};
 const rowTy=r=>`<tr><td>${show(r.d)}</td><td class="ds">${esc(r.desc||'')}</td><td>${cat(r).ic} ${esc(cat(r).n+(subName(r)?' › '+subName(r):''))}</td><td class="r ${r.type==='i'?'inc':'exp'}"><b>${f(r.amt)}</b></td>${delBtn(r)}</tr>`;
@@ -438,6 +591,7 @@ function recent(A){
 }
 function statement(v){
  $('stsum').innerHTML=`<div>${tr('colInc')}<b class="inc">${fm(v.inc)}</b></div><div>${tr('colExp')}<b class="exp">${fm(v.exp)}</b></div><div>${tr('colBal')}<b class="${v.closing<0?'exp':'inc'}">${fm(v.closing)}</b></div>`;
+ if(gd&&gsep){$('more').hidden=true;sepStatement();return}
  const rows=v.rows.filter(r=>(vw==='st'||r.type===vw)&&hit(r)).reverse();
  $('more').hidden=true;
  if(!rows.length){$('list').innerHTML=`<div class="empty">${tr('noTx')}</div>`;return}
@@ -460,13 +614,13 @@ function statement(v){
  $('more').hidden=!left;if(left)$('more').textContent=tr('more',{n:left});
 }
 function render(){
- curUi();
+ curUi();gui();$('yr').textContent=new Date().getFullYear();
  const A=view(true),v=view();
  $('inc').textContent=fm(A.inc);$('exp').textContent=fm(A.exp);
  $('bal').textContent=fm(A.closing);$('bal').className='n '+(A.closing<0?'exp':'inc');
  $('op').textContent='';
- $('pt').textContent=tr(vw==='st'?'statement':vw==='i'?'income':'expense')+': '+rlabel()+' · '+new Date().toLocaleDateString('en-GB');
- $('exr').textContent=tr('expRange')+': '+rlabel();
+ $('pt').textContent=tr(vw==='st'?'statement':vw==='i'?'income':'expense')+': '+rlabel()+gtitle()+' · '+new Date().toLocaleDateString('en-GB');
+ $('exr').textContent=tr('expRange')+': '+rlabel()+gtitle();
  recent(A);charts(A);statement(v);savings(A);
 }
 function showTab(t){
@@ -478,7 +632,8 @@ function showTab(t){
 }
 function chips(){subsUi();$('chips').innerHTML=catsOf(type).map(c=>`<button type="button" class="ctile${c.k===sc?' on':''}" data-k="${c.k}"><span class="ci">${c.ic}</span><span class="cnm">${esc(cn(c))}</span>${c.n?`<i class="cdel" data-del="${c.k}">×</i>`:''}</button>`).join('')+`<button type="button" class="ctile add" data-add="1"><span class="ci">＋</span><span class="cnm">${esc(tr('addCat'))}</span></button>`}
 function setType(t){type=t;$('newcat').hidden=true;sc=CATS[t][0].k;$('bi').classList.toggle('on',t==='i');$('be').classList.toggle('on',t==='e');chips()}
-function openSheet(){setType(type);$('dt').value=isoOf(new Date());$('desc').value='';$('amt').value='';$('sheet').hidden=false;setTimeout(()=>$('amt').focus(),60)}
+function fillDl(){[['p','dlp'],['g','dlg'],['a','dla']].forEach(([k,id])=>{const l=[...new Set(items.map(t=>String(t[k]||'').trim()).filter(Boolean))].sort();$(id).innerHTML=l.map(x=>`<option value="${esc(x)}">`).join('')})}
+function openSheet(){setType(type);$('dt').value=isoOf(new Date());$('desc').value='';$('fp').value=$('fg').value=$('fa').value='';$('pgaF').hidden=true;fillDl();$('amt').value='';$('sheet').hidden=false;setTimeout(()=>$('amt').focus(),60)}
 function closeSheet(){$('sheet').hidden=true}
 $('bi').onclick=()=>setType('i');
 $('be').onclick=()=>setType('e');
@@ -508,16 +663,22 @@ $('qai').onclick=()=>{type='i';openSheet()};
 $('qae').onclick=()=>{type='e';openSheet()};
 $('sx').onclick=closeSheet;
 $('sheet').onclick=e=>{if(e.target.id==='sheet')closeSheet()};
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();closeCur()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeSheet();closeCur();closeShare()}});
 $('add').onclick=()=>{
  const a=parseFloat($('amt').value);
  if(!a||a<=0){$('amt').focus();return}
- items.push({id:Date.now(),type,c:sc,s:ss||undefined,desc:$('desc').value.trim(),amt:a,d:$('dt').value||isoOf(new Date())});
+ items.push({id:Date.now(),type,c:sc,s:ss||undefined,desc:$('desc').value.trim(),p:$('fp').value.trim()||undefined,g:$('fg').value.trim()||undefined,a:$('fa').value.trim()||undefined,amt:a,d:$('dt').value||isoOf(new Date())});
  save();render();closeSheet();
 };
 function setView(x){vw=x;lim=25;$('tS').classList.toggle('on',x==='st');$('tI').classList.toggle('on',x==='i');$('tE').classList.toggle('on',x==='e');render()}
 $('tS').onclick=()=>setView('st');$('tI').onclick=()=>setView('i');$('tE').onclick=()=>setView('e');
 $('list').onclick=ev=>{
+ const sb=ev.target.closest('[data-sh]');
+ if(sb){shareEnt(sb.dataset.sh);return}
+ const pb=ev.target.closest('[data-pr]');
+ if(pb){printEnt(pb.dataset.pr);return}
+ const eh=ev.target.closest('.eh');
+ if(eh){gopen[eh.dataset.ge]=eh.dataset.o!=='1';render();return}
  const gh=ev.target.closest('.gh');
  if(gh){mo[gh.dataset.m]=gh.dataset.o!=='1';render();return}
  const id=ev.target.dataset&&ev.target.dataset.id;
@@ -545,15 +706,15 @@ async function out(name,blob){
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),3000);
  return true;
 }
-const fname=ext=>'xisaab-'+((from||to)?(from||'bilow')+'_'+(to||'hadda'):'dhammaan')+'.'+ext;
+const fname=ext=>'xisaab-'+((from||to)?(from||'bilow')+'_'+(to||'hadda'):'dhammaan')+gsuf()+'.'+ext;
 
 /* CSV */
 function buildCsv(v){
  const q=s=>'"'+String(s).replace(/"/g,'""')+'"';
- const L=[['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub'].map(k=>q(tr(k)+(['colInc','colExp','colBal'].includes(k)?' ('+CUR+')':''))).join(',')];
- if(v.hasOpening)L.push([q(''),q(tr('opening')),q(''),'','',v.opening,q(''),q('')].join(','));
- v.rows.forEach(r=>L.push([q(r.d),q(r.desc||''),q(r.type==='i'?tr('typeInc'):tr('typeExp')),r.type==='i'?r.amt:'',r.type==='e'?r.amt:'',r.bal,q(cat(r).n),q(subName(r))].join(',')));
- L.push([q(''),q(tr('total')),q(''),v.inc,v.exp,v.closing,q(''),q('')].join(','));
+ const L=[['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub','gP','gG','gA'].map(k=>q(tr(k)+(['colInc','colExp','colBal'].includes(k)?' ('+CUR+')':''))).join(',')];
+ if(v.hasOpening)L.push([q(''),q(tr('opening')),q(''),'','',v.opening,q(''),q(''),q(''),q(''),q('')].join(','));
+ v.rows.forEach(r=>L.push([q(r.d),q(r.desc||''),q(r.type==='i'?tr('typeInc'):tr('typeExp')),r.type==='i'?r.amt:'',r.type==='e'?r.amt:'',r.bal,q(cat(r).n),q(subName(r)),q(r.p||''),q(r.g||''),q(r.a||'')].join(',')));
+ L.push([q(''),q(tr('total')),q(''),v.inc,v.exp,v.closing,q(''),q(''),q(''),q(''),q('')].join(','));
  return '\ufeff'+L.join('\r\n');
 }
 
@@ -587,7 +748,7 @@ function buildXlsx(v){
  // styles: 0 normal,1 header,2 date,3 number,4 bold number,5 bold text
  const styles=X+`<styleSheet ${NS}><numFmts count="2"><numFmt numFmtId="164" formatCode="${esc(CURS[CUR])}"/><numFmt numFmtId="165" formatCode="yyyy\\-mm\\-dd"/></numFmts><fonts count="3"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font></fonts><fills count="3"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill><fill><patternFill patternType="solid"><fgColor rgb="FF2456D6"/><bgColor indexed="64"/></patternFill></fill></fills><borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></borders><cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs><cellXfs count="6"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="2" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1"/><xf numFmtId="165" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="0" fillId="0" borderId="0" xfId="0" applyNumberFormat="1"/><xf numFmtId="164" fontId="1" fillId="0" borderId="0" xfId="0" applyNumberFormat="1" applyFont="1"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs><cellStyles count="1"><cellStyle name="Normal" xfId="0" builtinId="0"/></cellStyles></styleSheet>`;
  // Statement sheet
- const H=['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub'].map(k=>tr(k)).map((t,i)=>cs_(String.fromCharCode(65+i)+'1',t,1));
+ const H=['colDate','colDesc','colType','colInc','colExp','colBal','colCat','colSub','gP','gG','gA'].map(k=>tr(k)).map((t,i)=>cs_(String.fromCharCode(65+i)+'1',t,1));
  const S=[H];let r=2,prev=null;
  if(v.hasOpening){S.push([cs_('B2',tr('opening'),5),cn_('F2',v.opening,4)]);prev=2;r=3}
  v.rows.forEach(x=>{
@@ -595,7 +756,7 @@ function buildXlsx(v){
   if(x.type==='i')c.push(cn_('D'+r,x.amt,3));
   if(x.type==='e')c.push(cn_('E'+r,x.amt,3));
   c.push(cf_('F'+r,prev?`F${prev}+D${r}-E${r}`:`D${r}-E${r}`,x.bal,3));
-  c.push(cs_('G'+r,cat(x).n));if(subName(x))c.push(cs_('H'+r,subName(x)));S.push(c);prev=r;r++;
+  c.push(cs_('G'+r,cat(x).n));if(subName(x))c.push(cs_('H'+r,subName(x)));if(x.p)c.push(cs_('I'+r,x.p));if(x.g)c.push(cs_('J'+r,x.g));if(x.a)c.push(cs_('K'+r,x.a));S.push(c);prev=r;r++;
  });
  const first=v.hasOpening?3:2,last=r-1;
  if(v.rows.length)S.push([cs_('B'+r,tr('total'),5),cf_('D'+r,`SUM(D${first}:D${last})`,v.inc,4),cf_('E'+r,`SUM(E${first}:E${last})`,v.exp,4),cf_('F'+r,`F${last}`,v.closing,4)]);
@@ -613,7 +774,7 @@ function buildXlsx(v){
   {name:'xl/workbook.xml',data:X+`<workbook ${NS} xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="${esc(tr('sh1'))}" sheetId="1" r:id="rId1"/><sheet name="${esc(tr('sh2'))}" sheetId="2" r:id="rId2"/></sheets></workbook>`},
   {name:'xl/_rels/workbook.xml.rels',data:X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet2.xml"/><Relationship Id="rId3" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/></Relationships>'},
   {name:'xl/styles.xml',data:styles},
-  {name:'xl/worksheets/sheet1.xml',data:sheet(S,[13,34,11,15,15,16,16,18],true)},
+  {name:'xl/worksheets/sheet1.xml',data:sheet(S,[13,34,11,15,15,16,16,18,18,16,16],true)},
   {name:'xl/worksheets/sheet2.xml',data:sheet(S2,[22,16,16,16],true)}
  ]);
 }
@@ -627,8 +788,8 @@ $('bcsv').onclick=async()=>{
  if(!v.rows.length){$('bs').textContent=tr('noData');return}
  if(await out(fname('csv'),new Blob([buildCsv(v)],{type:'text/csv'})))$('bs').textContent=tr('csvOk');
 };
-$('bpdf').onclick=()=>{printMode=true;showTab('st');setTimeout(()=>{window.print();setTimeout(()=>{printMode=false;render()},3000)},80)};
-window.addEventListener('afterprint',()=>{if(printMode){printMode=false;render()}});
+$('bpdf').onclick=()=>{printMode=true;showTab('st');setTimeout(()=>{window.print();setTimeout(endPrint,3000)},80)};
+window.addEventListener('afterprint',()=>{if(printMode)endPrint()});
 document.querySelectorAll('#nav [data-t]').forEach(b=>b.onclick=()=>showTab(b.dataset.t));
 $('nadd').onclick=openSheet;
 $('viewAll').onclick=()=>showTab('st');
@@ -645,7 +806,7 @@ $('fi').onchange=async ev=>{
   if(arr&&!Array.isArray(arr)){if(!GOAL&&arr.goal>0){GOAL=r2(+arr.goal);saveGoal()}const cc=arr.cats||{};for(const ty of ['i','e'])(cc[ty]||[]).forEach(c=>{if(c&&c.k&&c.n&&!CC[ty].some(x=>x.k===c.k))CC[ty].push({k:String(c.k),ic:String(c.ic||'🏷'),n:String(c.n)})});saveCC();const sb=arr.subs||{};for(const k in sb)(sb[k]||[]).forEach(x=>{if(x&&x.k&&x.n){CS[k]=CS[k]||[];if(!CS[k].some(y=>y.k===x.k))CS[k].push({k:String(x.k),n:String(x.n)})}});saveCS();arr=arr.items||[]}
   for(const t of arr){
    if(!t||!t.id||!(t.amt>0)||(t.type!=='i'&&t.type!=='e'))continue;
-   if(!items.some(x=>x.id===Number(t.id))){items.push({id:Number(t.id),type:t.type,desc:String(t.desc||''),amt:Number(t.amt),d:t.d||undefined,c:t.c||undefined,s:t.s||undefined});n++}
+   if(!items.some(x=>x.id===Number(t.id))){items.push({id:Number(t.id),type:t.type,desc:String(t.desc||''),amt:Number(t.amt),d:t.d||undefined,c:t.c||undefined,s:t.s||undefined,p:t.p?String(t.p):undefined,g:t.g?String(t.g):undefined,a:t.a?String(t.a):undefined});n++}
   }
   save();render();$('bs').textContent=tr('restored',{n});
  }catch(e){$('bs').textContent=tr('badFile')}
@@ -660,7 +821,8 @@ function stat(){
  $('st').textContent=(navigator.onLine===false?'📴 ':'')+tr(ready?'offReady':'offWait');
 }
 window.addEventListener('online',stat);window.addEventListener('offline',stat);
-function doReload(){location.reload()}
+function showUpd(){document.querySelectorAll('.yr2').forEach(e=>e.textContent=new Date().getFullYear());$('updov').hidden=false}
+function doReload(){showUpd();setTimeout(()=>location.reload(),700)}
 function goTo(u){location.replace(u)}
 async function forceUpdate(){
  const b=$('chk');
@@ -668,10 +830,11 @@ async function forceUpdate(){
   b.textContent=tr('updating');
   const r=await fetch(location.pathname+'?c='+Date.now(),{cache:'no-store'});
   if(!r.ok)throw 0;
+  showUpd();
   if(navigator.serviceWorker){const regs=await navigator.serviceWorker.getRegistrations();await Promise.all(regs.map(x=>x.unregister()))}
   if(window.caches){for(const k of await caches.keys())await caches.delete(k)}
   goTo(location.pathname+'?u='+Date.now());
- }catch(e){b.textContent=tr('needNet');setTimeout(()=>{b.textContent=tr('chkUpd')},3000)}
+ }catch(e){$('updov').hidden=true;b.textContent=tr('needNet');setTimeout(()=>{b.textContent=tr('chkUpd')},3000)}
 }
 $('chk').onclick=forceUpdate;
 const editing=()=>!$('sheet').hidden||!$('csheet').hidden;
@@ -693,6 +856,17 @@ function applyLang(){
 }
 $('sv').onclick=e=>{if(e.target.closest('#goalB'))setGoal()};
 $('sv').onkeydown=e=>{if(e.key==='Enter'&&e.target.id==='goal'){e.preventDefault();setGoal()}};
+$('bsh').onclick=()=>openShare(stmtText());
+$('shx').onclick=closeShare;
+$('shsheet').onclick=e=>{if(e.target.id==='shsheet')closeShare()};
+$('shgrid').onclick=async e=>{
+ if(e.target.closest('[data-lk]')){setTimeout(closeShare,400);return}
+ if(e.target.closest('#shcp')){try{await navigator.clipboard.writeText(shTxt);$('shmsg').textContent=tr('shCopied')}catch(x){prompt('',shTxt)}return}
+ if(e.target.closest('#shmore')){try{await navigator.share({title:tr('title'),text:shTxt})}catch(x){}}
+};
+$('moreF').onclick=()=>{$('pgaF').hidden=!$('pgaF').hidden;if(!$('pgaF').hidden)$('fp').focus()};
+$('gseg').onclick=e=>{const b=e.target.closest('button');if(!b)return;gd=b.dataset.g;gsel=new Set();gopen={};lim=25;render()};
+$('gchips').onclick=e=>{const c=e.target.closest('.schip');if(c){const k=c.dataset.k;gsel.has(k)?gsel.delete(k):gsel.add(k);lim=25;render();return}const m=e.target.closest('[data-m]');if(m){gsep=m.dataset.m==='1';render()}};
 $('curbtn').onclick=openCur;
 $('cx').onclick=closeCur;
 $('csheet').onclick=e=>{if(e.target.id==='csheet')closeCur()};
